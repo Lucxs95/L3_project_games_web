@@ -1,16 +1,25 @@
 import Cookie from "./cookie.js";
 import { create2DArray } from "./utils.js";
+
 /* Classe principale du jeu, c'est une grille de cookies. Le jeu se joue comme
 Candy Crush Saga etc... c'est un match-3 game... */
 export default class Grille {
-    cookiesSelectionees = [];
+  cookiesSelectionnees = [];
+
   constructor(l, c) {
     this.colonnes = c;
     this.lignes = l;
-    this.cookies= create2DArray(l);
-    this.remplirTableauDeCookies(6);
-    this.verificationSuiteCookies();
-    this.htmlImage = document.createElement("img");
+    // le tableau des cookies
+    this.cookies = create2DArray(l);
+
+    let existeAlignement = false;
+
+    do {
+      this.remplirTableauDeCookies(6);
+      existeAlignement = this.testAlignementDansTouteLaGrille();
+      console.log("ExisteAlignement : " + existeAlignement)
+    } while(existeAlignement)
+    
   }
 
   /**
@@ -19,55 +28,84 @@ export default class Grille {
    * écouteurs de click et de drag'n'drop pour pouvoir interagir avec elles
    * et implémenter la logique du jeu.
    */
-  
   showCookies() {
     let caseDivs = document.querySelectorAll("#grille div");
 
     caseDivs.forEach((div, index) => {
-      let ligne = Math.floor(index/this.lignes);
+      let ligne = Math.floor(index / this.lignes);
       let colonne = index % this.colonnes;
 
       let cookie = this.cookies[ligne][colonne];
-      // console.log("On remplit le div index=" + index + " l=" + ligne + " col=" + colonne);
-
       let img = cookie.htmlImage;
 
-      // ecouteur sur l'image
-
+      // On met un écouteur de click sur l'image
       img.onclick = (event) => {
-        // recup ligne et colonne de l'objet
-        const i = event.target;
-        let ligneCookie = i.dataset.ligne;
-        let colonneCookie = i.dataset.colonne;
-        console.log("ligne : " + ligneCookie + " colonne : " + colonneCookie);
-         let cookieClickee = this.cookies[ligneCookie][colonneCookie];
+        let cookieClickee = this.getCookieFromImage(event.target);
 
-        if(this.cookiesSelectionees.length === 0){
+        if (this.cookiesSelectionnees.length === 0) {
           cookieClickee.selectionnee();
-          this.cookiesSelectionees.push(cookieClickee);
-      }else if (this.cookiesSelectionees.length === 1){
-          console.log("on tente de swap");
-          this.cookiesSelectionees.push(cookieClickee);
-          Cookie.swapCookies(this.cookiesSelectionees[0],this.cookiesSelectionees[1]
-  );
-  this.cookiesSelectionees = [];
-      }else{
-        console.log("deux cookies deja selectionnees")
-      }
+          this.cookiesSelectionnees.push(cookieClickee);
+        } else if (this.cookiesSelectionnees.length === 1) {
+          cookieClickee.selectionnee();
+          console.log("On essaie de swapper !")
+          this.cookiesSelectionnees.push(cookieClickee);
+          // on essaie de swapper
+          Cookie.swapCookies(this.cookiesSelectionnees[0],
+            this.cookiesSelectionnees[1]);
+          // on remet le tableau des cookies selectionnées à 0
+          this.cookiesSelectionnees = [];
+        } else {
+          console.log("Deux cookies sont déjà sélectionnées...")
+        }
       }
 
-      /*img.ondragstart = ( event) => {
-        let ligneCookie = i.dataset.ligne;
-        let colonneCookie = i.dataset.colonne;
-        JSON.stringify({ ligne : ligneCookie , colonne : colonneCookie });
+      img.ondragstart = (event) => {
+        let cookieDragguee = this.getCookieFromImage(event.target);
+        cookieDragguee.selectionnee();
 
-      }*/
-      
-      // on affiche l'image dans le div pour la faire apparaitre à l'écran.
+        // on remet à zero le tableau des cookies selectionnees
+        this.cookiesSelectionnees = [];
+        this.cookiesSelectionnees.push(cookieDragguee);
+      }
+
+      img.ondragover = (event) => {
+        return false;
+      }
+
+      img.ondragenter = (event) => {
+        const i = event.target;
+        i.classList.add("imgDragOver");
+      }
+
+      img.ondragleave = (event) => {
+        const i = event.target;
+        i.classList.remove("imgDragOver");
+      }
+
+      img.ondrop = (event) => {
+        let cookieDragguee = this.getCookieFromImage(event.target);
+        cookieDragguee.selectionnee();
+
+        // on ajoute au tableau la deuxième cookie
+        this.cookiesSelectionnees.push(cookieDragguee);
+
+        // et on regarde si on peut les swapper
+        Cookie.swapCookies(this.cookiesSelectionnees[0], this.cookiesSelectionnees[1]);
+
+        // on remet le tableau des cookies selectionnées à 0
+        this.cookiesSelectionnees = [];
+        cookieDragguee.htmlImage.classList.remove("imgDragOver");
+      }
+
       div.appendChild(img);
     });
   }
-  
+
+  getCookieFromImage(i) {
+    let ligneCookie = i.dataset.ligne;
+    let colonneCookie = i.dataset.colonne;
+    return this.cookies[ligneCookie][colonneCookie];
+  }
   /**
    * Initialisation du niveau de départ. Le paramètre est le nombre de cookies différents
    * dans la grille. 4 types (4 couleurs) = facile de trouver des possibilités de faire
@@ -79,105 +117,119 @@ export default class Grille {
    * difficiles.
    *
    * On verra plus tard pour les améliorations...
-   * 
-   * Maths.random()
-   *      .round()
-   * 
    */
   remplirTableauDeCookies(nbDeCookiesDifferents) {
-    // A FAIRE
-    for(let l = 0 ; l<this.lignes ; l++) {
-      for(let c = 0 ; c<this.colonnes; c++){
-
-        const type = Math.floor(Math.random()*nbDeCookiesDifferents);
+    for (let l = 0; l < this.lignes; l++) {
+      for (let c = 0; c < this.colonnes; c++) {
+        //console.log("ligne = " + l + " colonne = " + c);
+        const type = Math.round(Math.random() * (nbDeCookiesDifferents - 1))
         this.cookies[l][c] = new Cookie(type, l, c);
-
       }
     }
   }
 
-  verificationSuiteCookies() {
-    console.log("hello on verifie la suite en colonne des cookies");
-     let arr = [];
-     console.log(arr[1]);
-     let j = 0;
+  // Test des alignements de 3 cookies ou plus, horizontalement et verticalement
 
+  testAlignementDansTouteLaGrille() {
+    let alignementExisteLignes = false;
+    let alignementExisteColonnes = false;
 
-     for(let c = 0 ; c<this.colonnes ; c++){ // en colonne d'abord 
+    alignementExisteLignes = this.testAlignementToutesLesLignes();
+    alignementExisteColonnes = this.testAlignementToutesLesColonnes();
 
-      for(let l = 0 ; l<this.lignes ; l++) {
-        let element = this.cookies[l][c];
-        
-        let précédent = arr[j-1];
-        let précédentprécédent = arr[j-2];
+    return (alignementExisteLignes || alignementExisteColonnes);
+  }
 
-        arr[j] = element.type;
-        let actuel = arr[j];
-        console.log(actuel);
-        j++;
-        
+  testAlignementToutesLesLignes() {
+    let alignementLignes = false;
 
-          if (actuel === précédent && précédent === précédentprécédent ){
-            console.log("repetition de 3 motifs");
-            console.log("j-1 : " + précédent);
-            console.log("j-2 : " + précédentprécédent);
+    for (let i = 0; i < this.lignes; i++) {
+      alignementLignes = this.testAlignementLigne(i);
+    }
 
-          }else{
-            console.log("ok");
-            console.log("j-1 : " + précédent);
-            console.log("j-2 : " + précédentprécédent);
-          }
+    return alignementLignes;
+  }
+
+  testAlignementLigne(ligne) {
+    let alignement = false;
+
+    // on récupère le tableau qui correspond à la ligne
+    let tabLigne = this.cookies[ligne];
+
+    //on parcours les colonnes de la ligne courante
+    for (let c = 0; c <= this.lignes - 3; c++) {
+      let cookie1 = tabLigne[c];
+      let cookie2 = tabLigne[c + 1];
+      let cookie3 = tabLigne[c + 2];
+
+      if ((cookie1.type === cookie2.type) && (cookie2.type === cookie3.type)) {
+        cookie1.cachee();
+        cookie2.cachee();
+        cookie3.cachee();
+        alignement = true;
+      }
+    }
+    return alignement;
+  }
+  testAlignementToutesLesColonnes() {
+    let alignementColonnes = false;
+    for (let i = 0; i < this.colonnes; i++) {
+      alignementColonnes = this.testAlignementColonne(i);
+    }
+
+    return alignementColonnes;
+  }
+
+  testAlignementColonne(colonne) {
+    let alignement = false;
+
+    // on parcourt les lignes de la colonne courante
+    for (let l = 0; l <= this.colonnes - 3; l++) {
+      let cookie1 = this.cookies[l][colonne];
+      let cookie2 = this.cookies[l+1][colonne];
+      let cookie3 = this.cookies[l+2][colonne];
+
+      if ((cookie1.type === cookie2.type) && (cookie2.type === cookie3.type)) {
+        cookie1.cachee();
+        cookie2.cachee();
+        cookie3.cachee();
+        alignement = true;
         
       }
-      console.log(arr)
-      console.log("fin de la colonne " + c);
-      arr=[];
-     }
+    }
+    return alignement;
+  }
 
+  // Swap des cookies cachées avec des cookies non cachés au dessus (chute)
+  swapCookieCacheeCookieDessus() {
+    let c = 8;
+    let cookietmp2;
+    for (let l = 8; l <= 0; l--) {
+      
+      if (this.cookies[l][c].isCache()) {
+        // memoriser cookie
+        let cookietmp = this.cookies[l][c];
+        console.log(cookietmp);
 
+        //chercher un cookie non caché
+        while (this.cookies[l][c].isCache()){
+          c--;
+          console.log(c);
+        }
+        console.log(c);
+        //on est sur la premiere pas cachée --> puis swapper
+        cookietmp2 = this.cookies[l][c];
+        this.cookies[l][c] = cookietmp;
+        cookietmp = cookietmp2;
+        console.log(cookietmp);
+        console.log("swap ok");
+        return 
 
-
-
-
-
-     console.log("hello on verifie la suite en ligne des cookies");
-     let arr2 = [];
-     console.log(arr2[1]);
-     let k = 0;
-
-
-     for(let l = 0 ; l<this.lignes ; l++){ // en ligne maintenant
-
-      for(let c = 0 ; c<this.colonnes ; c++) {
-        let element2 = this.cookies[l][c];
-        
-        let préc = arr2[k-1];
-        let précpréc = arr2[k-2];
-
-        arr2[k] = element2.type;
-        let act = arr2[k];
-        console.log(act);
-        k++;
-        
-
-          if (act === préc && préc === précpréc ){
-            console.log("repetition de 3 motifs");
-            console.log("k-1 : " + préc);
-            console.log("k-2 : " + précpréc);
-            let précprécpréc = arr2[k-3]
-            this.htmlImage.classList.toggle("grilleSuite");
-
-          }else{
-            console.log("ok");
-            console.log("k-1 : " + préc);
-            console.log("k-2 : " + précpréc);
-          }
-        
       }
-      console.log(arr2)
-      console.log("fin de la ligne " + l);
-      arr2=[];
-     }
-   }
+      else{
+        console.log(" ce cookie n'est pas cachée");
+      }
 
+    }
+  }
 }

@@ -1,4 +1,4 @@
-//filter products
+/*//filter products
 var $mediaElements = $(".cd-item");
 $(".filter_link").click(function(e) {
   e.preventDefault();
@@ -12,4 +12,4 @@ $(".filter_link").click(function(e) {
       .slideDown("slow");
   }
 });
-//filter products
+//filter products*/

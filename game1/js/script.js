@@ -15,4 +15,14 @@ function init() {
 
   grille = new Grille(9, 9);
   grille.showCookies();
+
+  console.log('#buttonTestChute')
+  let c = document.querySelector("#buttonTestChute");
+  console.log(c);
+  c.onclick = () => {
+    let chute = grille.swapCookieCacheeCookieDessus();
+
+    console.log("chute : " + chute)
+
+  }
 }

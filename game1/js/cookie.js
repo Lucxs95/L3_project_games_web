@@ -21,12 +21,12 @@ export default class Cookie {
     this.type = type;
     this.ligne = ligne;
     this.colonne = colonne;
-
     this.htmlImage = document.createElement("img");
     this.htmlImage.src = Cookie.urlsImagesNormales[type];
     this.htmlImage.width = 80;
     this.htmlImage.height = 80;
-    //utilisation dataset api HTML5 pour attacher des attributs specifiques a l'obj html cree
+    // utilisation de la "dataset API" de HTML5 pour "attacher"
+    // des attributs spécifiques à l'objet HTML créé
     this.htmlImage.dataset.ligne = ligne;
     this.htmlImage.dataset.colonne = colonne;
   }
@@ -34,38 +34,42 @@ export default class Cookie {
   selectionnee() {
     // on change l'image et la classe CSS
     this.htmlImage.src = Cookie.urlsImagesSurlignees[this.type];
-    //zoom + ombre
-
-    this.htmlImage.classList.toggle("cookies-selected");
+    // on zoome et on ajoute une ombre
+    this.htmlImage.classList.add("cookies-selected");
   }
 
   deselectionnee() {
     // on change l'image et la classe CSS
+    this.htmlImage.src = Cookie.urlsImagesNormales[this.type];
+    // on supprime la classe CSS selectionnée
+    this.htmlImage.classList.remove("cookies-selected");
   }
 
   static swapCookies(c1, c2) {
-    console.log("distance = " + Cookie.distance(c1, c2));
+    // avant de swapper, on regarde la distance
+    console.log("Distance = " + Cookie.distance(c1, c2));
     if (Cookie.distance(c1, c2) === 1) {
-      console.log("SWAP C1 C2");
       // On échange leurs images et types
-      const imageSrctmp = c2.htmlImage.src;
-      const typetmp = c2.type;
+      const imageSrcTmp = c2.htmlImage.src;
+      const typeTmp = c2.type;
 
       c2.htmlImage.src = c1.htmlImage.src;
       c2.type = c1.type;
 
-      c1.htmlImage.src = imageSrctmp;
-      c1.type = typetmp;
-
-     
-
-      c1.deselectionnee;
-      c2.deselectionnee;
-
-      // et on remet les désélectionne
-    } else {
-      console.log("Distance trop longue");
+      c1.htmlImage.src = imageSrcTmp;
+      c1.type = typeTmp;
     }
+    // et on les désélectionne
+    c1.deselectionnee();
+    c2.deselectionnee();
+  }
+
+  cachee() {
+    this.htmlImage.classList.add("cookieCachee");
+  }
+
+  isCache(){
+    return this.htmlImage.classList.contains("cookieCachee")
   }
 
   /** renvoie la distance entre deux cookies */

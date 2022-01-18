@@ -10,15 +10,15 @@
     display: flex;
     justify-content: space-around;
 }
+#buttonTestChute{
+
+    margin-left: 50%;
+}
 
 #infos div {
     /* https://css-tricks.com/almanac/properties/j/justify-content/ */
     font-size: 40px;
     color: rgb(133, 47, 47);
-}
-
-#h2center {
-    margin: auto;
 }
 
 #grille {
@@ -27,7 +27,6 @@
     background-color: rgba(100, 100, 100, 0.5);
     border: 1px;
     border: 1px solid #999;
-
 
     display: grid;
     /* 1fr signifie "une fraction de la largeur de la grille", le repeat dit "9 cases" 
@@ -69,7 +68,11 @@
 
 }
 
-.grilleSuite {
-    background-color: red;
+.imgDragOver {
+    background-color: yellow;
+}
+
+.cookieCachee {
+    display:none;
 }
 

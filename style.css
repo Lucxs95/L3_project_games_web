@@ -1,12 +1,18 @@
 html {
-  background-image : url(./assets/backgroundcandy );
+  background-image : url(./assets/backgroundcandy.png );
   background-repeat: no-repeat;
-  background-size: cover;
+  padding-top :  20px;
+}
+
+header{
+  background-color: white;
+  opacity: 0.90;
 }
 
 body {
-    margin: 0;
+    margin-top: -20px;
     font-family: roboto;
+    margin-bottom: auto;
   }
   ul {
     list-style: none;
@@ -24,8 +30,7 @@ body {
     text-align: center;
     margin-top: 20px;
     font-size: 80px;
-    color: rgb(0, 0, 0);
-    
+    color: rgb(0, 0, 0);    
   }
 
   #titre {
@@ -110,6 +115,12 @@ body {
       -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
       -moz-transition: opacity 0.3s 0s, visibility 0s 0s;
       transition: opacity 0.3s 0s, visibility 0s 0s;
+    }
+    html {
+      background-image : url(./assets/backgroundcandy.png );
+      background-repeat: no-repeat;
+      background-size: cover;
+      
     }
     .cd-items {
       padding: 3em 0 0;
