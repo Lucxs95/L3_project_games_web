@@ -3,6 +3,19 @@
 
 }
 
-form{
+/*form{
     display: none;
+}*/
+
+
+#startGame {
+  display: none;
 }
+
+#deleteStart {
+    display: contents;
+  }
+
+  #deleteButtonStart {
+    display: contents;
+  }

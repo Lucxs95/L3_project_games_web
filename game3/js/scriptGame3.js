@@ -20,21 +20,20 @@ function init() {
     //console.log(prixElement);
 
 
-
     //renvoie le contenu textuel du nœud spécifié
     timerElement.innerText = temps;
     //prixElement.innerText = nombre;
     
 
-    /*function diminuerTemps() {
+    function diminuerTemps() {
         timerElement.innerText = temps;
         temps--;
         if (temps<= 0) {
             temps = 0;
         }else{
         }
-      }*/
-    //setInterval(diminuerTemps, 1000);
+      }
+    
 
 
     //return un entier aleatoire
@@ -47,37 +46,45 @@ function init() {
 
     //verification que input = random
     function verifierJustePrix(){
+        const prixElement = document.getElementById("nombre").innerText;
         console.log(justePrix);
-        console.log(prixElement.innerText);
-        
-        if(justePrix === prixElement.innerText){
-            console.log("trouvé");
-            return ("gg");
-        }
-        else{
+        console.log(prixElement);
+        /*while (prixElement.innerText !== justePrix) {
             console.log("nope");
             return ("perdu");
-        }
+            }
+        console.log("yep");
+        return ("gg le prix est de " + prixElement.innerText);
+        }*/
+        return 0;
     }
 
-    // recupere bouton + onclick lance la verification
-    let parisButton = document.querySelector("#parisButton");
-    console.log(parisButton);
-    parisButton.onclick = () => {
-        let verif = verifierJustePrix();
-        console.log("resultat : " + verif)
+    //recupere le bouton parier et lance la fonction associé
+  let c = document.querySelector("#parisButton");
+  c.onclick = () => {
+    let parisButtonGo = verifierJustePrix();
+    console.log("parisButtonGo : " + parisButtonGo)
   }
 
 
-  function afficherJeu(){
-      style.display = "contents";
-    }
 
-   // recupere bouton + onclick lance la verification
-   let commencerButton = document.querySelector("#commencer");
-   console.log(commencerButton);
-   commencerButton.onclick = () => {
-       let afficherJeu = afficherJeu();
- }
+
+
+  //fonction lancant le jeu en appuyant sur le bouton commencer
+  function afficherJeu() {
+    document.getElementById("startGame").style.display = "contents";
+    document.getElementById("deleteStart").style.display = "none";
+    document.getElementById("deleteButtonStart").style.display = "none";
+    setInterval(diminuerTemps, 1000);
+    return 0;
+  }
+
+  //recupere le bouton commencer et lance le jeu en enlevant ce meme bouton en affichant input et supprimant l'image principale
+  let b = document.querySelector("#commencer");
+  b.onclick = () => {
+    let afficherGame = afficherJeu();
+    console.log("afficherGame : " + afficherGame)
+  }
+
   
 }
