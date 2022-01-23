@@ -1,28 +1,89 @@
-<html lang="fr">
+﻿<html>
 
 <head>
-    <title> GAME WEEB </title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/styleGame2.css">
-    <link rel="stylesheet" href=" ../style.css" />
-    <script src="lib/lodash.js"></script>
-    <script type="module" src="js/scriptGame2.js"></script>
-    <link rel="icon" type="image/png" href="???.png">
-    <script type="module" src="../script.js"></script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Memory</title>
+    <meta name="description" content="Jeu du Memory : Reconstruire les paires d'images identiques jusqu'à la dernière" />
+    <link href='styles/mef.css' rel='stylesheet' type='text/css' />
+    <script src="scripts/script.js"></script>
 </head>
-
 
 <body>
 
-  <header><h1>GAMES WEEB</h1></header>
-  <div class="filters">
-    <a class="filter_link" style="background: #3faaf5;" href="../index.html" >MENU</a>
-    <a class="filter_link" style="background: #57af56;" href="../game1/index.html">GAME 1</a>
-    <a class="filter_link" style="background: #fda729;" href="./">GAME 2</a>
-    <a class="filter_link" style="background: #d12710;" href="../game3/index.html">GAME 3</a>
-    <a class="filter_link" style="background: #580e04;" href="../infos/">GAME 4</a>
-  </div>
+    <div class="div_conteneur_parent">
+        <div class="div_conteneur_page">
+            <div class="titre_page">
+                <h1>Le Jeu du Memory pour le Web</h1>
+            </div>
 
-  </body>
+            <div class="div_int_page">
+                <div class="consign">
+                    <div style="width:auto;display:block;height:auto;text-align:center;background-color:#ccccff;border:#7030a0 1px solid;padding-top:12px;box-shadow: 6px 6px 0px #aaa;color:#7030a0;">
+                        <h1>Memory : Retrouver les paires d'images identiques</h1>
+                    </div>
+                </div>
+
+                <div class="zone_jeu">
+
+                    <div id="conteneur">
+
+                        <div class="centre">
+                            <div class="titre_centre" id="titre" style="text-align:center;padding-left:10px;">
+                                Cliquez sur les cases pour trouver les correspondances.
+                            </div>
+                        </div>
+                        <div class="colonne" id="liste">
+                            <div class="level">
+                                <button id="dif1">Niveau 1</button>
+                                <button id="dif2">Niveau 2</button>
+                                <button id="dif3">Niveau 3</button>
+                            </div>
+                            <div id="grille">
+                                <div class="case" id="case0"></div>
+                                <div class="case" id="case1"></div>
+                                <div class="case" id="case2"></div>
+                                <div class="case" id="case3"></div>
+
+                                <div class="case" id="case4"></div>
+                                <div class="case" id="case5"></div>
+                                <div class="case" id="case6"></div>
+                                <div class="case" id="case7"></div>
+
+                                <div class="case" id="case8"></div>
+                                <div class="case" id="case9"></div>
+                                <div class="case" id="case10"></div>
+                                <div class="case" id="case11"></div>
+
+                                <div class="case" id="case12"></div>
+                                <div class="case" id="case13"></div>
+                                <div class="case" id="case14"></div>
+                                <div class="case" id="case15"></div>
+                            </div>
+                            Vous avez trois minutes,<br />soit <span style="color:#CC3300;">180 secondes
+								:</span><br /><br /><br />
+                            <span style="font-size:18px;font-weight:normal;">Votre score :<br />
+								<div id="score" style="font-size:30px;"><strong>10</strong>/10</div>
+								<br /><br />
+								<div id="temps" style="font-size:20px;"></div><br />
+								<input type="button" class="btn" value="Nouvelle partie"
+									onClick="window.location.reload()" />
+							</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="div_saut_ligne" style="height:50px;">
+                </div>
+                <script>
+                    generation();
+                </script>
+            </div>
+        </div>
+
+    </div>
+
+</body>
 
 </html>
