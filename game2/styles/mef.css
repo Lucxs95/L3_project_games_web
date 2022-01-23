@@ -23,10 +23,42 @@ h1 {
     margin-bottom: 10px;
 }
 
-#grille {
+.grille {
     width: 300px;
     float: left;
     height: 300px;
+    text-align: center;
+    border: #333 1px solid;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    background-color: #CCCCCC;
+    background: rgba(100, 100, 100, .1);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    margin-left: 60px;
+}
+
+.grille2 {
+    width: 364px;
+    float: left;
+    height: 364px;
+    text-align: center;
+    border: #333 1px solid;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    background-color: #CCCCCC;
+    background: rgba(100, 100, 100, .1);
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-left: 60px;
+}
+
+.grille3 {
+    width: 445px;
+    float: left;
+    height: 445px;
     text-align: center;
     border: #333 1px solid;
     -moz-border-radius: 10px;

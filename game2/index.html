@@ -6,6 +6,8 @@
     <meta name="description" content="Jeu du Memory : Reconstruire les paires d'images identiques jusqu'à la dernière" />
     <link href='styles/mef.css' rel='stylesheet' type='text/css' />
     <script src="scripts/script.js"></script>
+    <script src="scripts/dif1.js"></script>
+    <script src="scripts/dif2.js"></script>
 </head>
 
 <body>
@@ -38,7 +40,8 @@
                                 <button id="dif2">Niveau 2</button>
                                 <button id="dif3">Niveau 3</button>
                             </div>
-                            <div id="grille">
+                            <!-- Difficulté 1 -->
+                            <div class="grille" id="niv1">
                                 <div class="case" id="case0"></div>
                                 <div class="case" id="case1"></div>
                                 <div class="case" id="case2"></div>
@@ -59,6 +62,83 @@
                                 <div class="case" id="case14"></div>
                                 <div class="case" id="case15"></div>
                             </div>
+                            <!-- Difficulté 2 -->
+                            <div class="grille2" id="niv2">
+                                <div class="case" id="case0"></div>
+                                <div class="case" id="case1"></div>
+                                <div class="case" id="case2"></div>
+                                <div class="case" id="case3"></div>
+                                <div class="case" id="case4"></div>
+
+                                <div class="case" id="case5"></div>
+                                <div class="case" id="case6"></div>
+                                <div class="case" id="case7"></div>
+                                <div class="case" id="case8"></div>
+                                <div class="case" id="case9"></div>
+
+                                <div class="case" id="case10"></div>
+                                <div class="case" id="case11"></div>
+                                <div class="case" id="case12"></div>
+                                <div class="case" id="case13"></div>
+                                <div class="case" id="case14"></div>
+
+                                <div class="case" id="case15"></div>
+                                <div class="case" id="case16"></div>
+                                <div class="case" id="case17"></div>
+                                <div class="case" id="case18"></div>
+                                <div class="case" id="case19"></div>
+
+                                <div class="case" id="case20"></div>
+                                <div class="case" id="case21"></div>
+                                <div class="case" id="case22"></div>
+                                <div class="case" id="case23"></div>
+                                <div class="case" id="case24"></div>
+                            </div>
+                            <!-- Difficulté 3 -->
+                            <div class="grille3" id="niv3">
+                                <div class="case" id="case0"></div>
+                                <div class="case" id="case1"></div>
+                                <div class="case" id="case2"></div>
+                                <div class="case" id="case3"></div>
+                                <div class="case" id="case4"></div>
+                                <div class="case" id="case5"></div>
+
+                                <div class="case" id="case6"></div>
+                                <div class="case" id="case7"></div>
+                                <div class="case" id="case8"></div>
+                                <div class="case" id="case9"></div>
+                                <div class="case" id="case10"></div>
+                                <div class="case" id="case11"></div>
+
+                                <div class="case" id="case12"></div>
+                                <div class="case" id="case13"></div>
+                                <div class="case" id="case14"></div>
+                                <div class="case" id="case15"></div>
+                                <div class="case" id="case16"></div>
+                                <div class="case" id="case17"></div>
+
+                                <div class="case" id="case18"></div>
+                                <div class="case" id="case19"></div>
+                                <div class="case" id="case20"></div>
+                                <div class="case" id="case21"></div>
+                                <div class="case" id="case22"></div>
+                                <div class="case" id="case23"></div>
+
+                                <div class="case" id="case24"></div>
+                                <div class="case" id="case25"></div>
+                                <div class="case" id="case26"></div>
+                                <div class="case" id="case27"></div>
+                                <div class="case" id="case28"></div>
+                                <div class="case" id="case29"></div>
+
+                                <div class="case" id="case30"></div>
+                                <div class="case" id="case31"></div>
+                                <div class="case" id="case32"></div>
+                                <div class="case" id="case33"></div>
+                                <div class="case" id="case34"></div>
+                                <div class="case" id="case35"></div>
+                            </div>
+
                             Vous avez trois minutes,<br />soit <span style="color:#CC3300;">180 secondes
 								:</span><br /><br /><br />
                             <span style="font-size:18px;font-weight:normal;">Votre score :<br />
@@ -74,7 +154,7 @@
 
                 </div>
                 <script>
-                    generation();
+                    //generation();
                 </script>
             </div>
         </div>
