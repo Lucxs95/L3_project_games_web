@@ -13,7 +13,7 @@ let temps_debut = new Date().getTime();
 
 let attente = setTimeout(function() {
     for (let i = 0; i < 16; i++) {
-        document.querySelector('#img' + i).src = "./mini/miniz.png";
+        document.querySelector('#img' + i).src = "game2/mini/miniz.png";
     }
     depart = true;
 }, 4000);
