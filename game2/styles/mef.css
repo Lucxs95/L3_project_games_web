@@ -241,6 +241,17 @@ a:active {
     text-align: center;
 }
 
+.sous_consign {
+    width: auto;
+    display: block;
+    height: auto;
+    background-color: #ccccff;
+    border: #7030a0 1px solid;
+    padding-top: 12px;
+    box-shadow: 6px 6px 0px #aaa;
+    color: #7030a0;
+}
+
 .zone_jeu {
     width: 100%;
     height: auto;

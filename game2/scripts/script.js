@@ -25,7 +25,6 @@ function generation() {
     let nb_img = "";
     let test = true;
     let chaine = "";
-    console.log("TEST");
     for (let i = 0; i < 16; i++) {
         while (test == true) {
             nb_alea = Math.floor(Math.random() * 16) + 1; //Pour génération dans les 16 cases
