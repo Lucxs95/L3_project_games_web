@@ -83,7 +83,7 @@ function verifier(limg, source) {
                     nb_clics = 1;
                 }
             }
-            if (dif_temps > 180) {
+            if (dif_temps > 10) {
                 document.getElementById("temps").innerHTML = "Le temps imparti est dépassé, vous avez perdu !";
                 depart = false;
             }
