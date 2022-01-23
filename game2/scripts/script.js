@@ -32,7 +32,7 @@ function generation() {
                 nb_alea = Math.floor(Math.random() * 16) + 1;
             else {
                 nb_img = Math.floor((nb_alea + 1) / 2); //8 paires pour 16 places ==> 2 générations différentes par image
-                document.querySelector("#case" + i).innerHTML = "<img style='cursor:pointer;' id='img" + i + "' src='game2/mini/mini" + nb_img + ".png' onClick='verifier(\"img" + i + "\", \"mini" + nb_img + "\")' alt='' />";
+                document.querySelector("#case" + i).innerHTML = "<img style='cursor:pointer;' id='img" + i + "' src='mini/mini" + nb_img + ".png' onClick='verifier(\"img" + i + "\", \"mini" + nb_img + "\")' alt='' />";
                 chaine += "-" + nb_alea + "-";
                 test = false;
             }
