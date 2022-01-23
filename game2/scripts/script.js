@@ -57,8 +57,8 @@ function verifier(limg, source) {
                 depart = false;
                 if (mini1 != mini2) {
                     let attente = setTimeout(function() {
-                        document.getElementById(case1).src = "game2/mini/miniz.png";
-                        document.getElementById(case2).src = "game2/mini/miniz.png";
+                        document.getElementById(case1).src = "mini/miniz.png";
+                        document.getElementById(case2).src = "mini/miniz.png";
                         depart = true;
                         nb_clics = 0;
                         nb_erreurs++;
