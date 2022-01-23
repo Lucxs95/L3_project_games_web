@@ -74,7 +74,6 @@ function verifier(limg, source) {
                     nb_clics = 0;
                     img_ok += 2;
                     if (img_ok == 16) {
-                        let dif_temps = Math.floor((new Date().getTime() - temps_debut) / 1000);
                         document.getElementById("score").innerHTML = "<strong>" + le_score + "</strong>/10";
                         document.getElementById("temps").innerHTML = "Vous avez mis <strong>" + dif_temps + "</strong> secondes";
                     }
