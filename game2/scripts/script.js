@@ -42,9 +42,9 @@ function generation() {
 }
 
 function verifier(limg, source) {
-    let dif_temps = Math.floor((new Date().getTime() - temps_debut) / 1000);
-    console.log(dif_temps);
     if (depart == true) {
+        let dif_temps = Math.floor((new Date().getTime() - temps_debut) / 1000);
+        console.log(dif_temps);
         nb_clics++;
         document.getElementById(limg).src = "mini/" + source + ".png";
 
