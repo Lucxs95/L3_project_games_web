@@ -44,7 +44,7 @@ function generation() {
 function verifier(limg, source) {
     if (depart == true) {
         nb_clics++;
-        document.getElementById(limg).src = "game2/mini/" + source + ".png";
+        document.getElementById(limg).src = "mini/" + source + ".png";
 
         if (nb_clics == 1) {
             mini1 = source;
