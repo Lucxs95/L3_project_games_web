@@ -45,7 +45,7 @@ function generation() {
 function verifier(limg, source) {
     if (depart == true) {
         nb_clics++;
-        document.getElementById(limg).src = "mini/" + source + ".png";
+        document.getElementById(limg).src = "../mini/" + source + ".png";
 
         if (nb_clics == 1) {
             mini1 = source;
@@ -58,8 +58,8 @@ function verifier(limg, source) {
                 depart = false;
                 if (mini1 != mini2) {
                     let attente = setTimeout(function() {
-                        document.getElementById(case1).src = "mini/miniz.png";
-                        document.getElementById(case2).src = "mini/miniz.png";
+                        document.getElementById(case1).src = "../mini/miniz.png";
+                        document.getElementById(case2).src = "../mini/miniz.png";
                         depart = true;
                         nb_clics = 0;
                         nb_erreurs++;
