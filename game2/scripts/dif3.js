@@ -1,4 +1,4 @@
-export default class Dif2 {
+export default class Dif3 {
     nb_clics = 0;
     mini1 = "";
     mini2 = ""; // mémoriser le nom img
@@ -13,7 +13,7 @@ export default class Dif2 {
 
 
     attente = setTimeout(function() {
-        for (let i = 0; i < 25; i++) {
+        for (let i = 0; i < 36; i++) {
             document.querySelector('#img' + i).src = "../mini/miniz.png";
         }
         depart = true;
@@ -21,16 +21,16 @@ export default class Dif2 {
 
 
 
-    generation_dif2() {
+    generation_dif3() {
         let nb_alea;
         let nb_img = "";
         let test = true;
         let chaine = "";
-        for (let i = 0; i < 25; i++) {
+        for (let i = 0; i < 36; i++) {
             while (test == true) {
-                nb_alea = Math.floor(Math.random() * 25) + 1; //Pour génération dans les 16 cases
+                nb_alea = Math.floor(Math.random() * 36) + 1; //Pour génération dans les 16 cases
                 if (chaine.indexOf("-" + nb_alea + "-") > -1)
-                    nb_alea = Math.floor(Math.random() * 25) + 1;
+                    nb_alea = Math.floor(Math.random() * 36) + 1;
                 else {
                     nb_img = Math.floor((nb_alea + 1) / 2); //8 paires pour 16 places ==> 2 générations différentes par image
                     document.querySelector("#case" + i).innerHTML = "<img style='cursor:pointer;' id='img" + i + "' src='mini/mini" + nb_img + ".png' onClick='verifier(\"img" + i + "\", \"mini" + nb_img + "\")' alt='' />";
@@ -64,17 +64,17 @@ export default class Dif2 {
                             depart = true;
                             nb_clics = 0;
                             nb_erreurs++;
-                            if (nb_erreurs < 21) {
-                                le_score = 20 - nb_erreurs;
+                            if (nb_erreurs < 31) {
+                                le_score = 30 - nb_erreurs;
                             }
-                            document.getElementById("score").innerHTML = "<strong>" + le_score + "</strong>/20";
+                            document.getElementById("score").innerHTML = "<strong>" + le_score + "</strong>/30";
                         }, 1000);
                     } else {
                         depart = true;
                         nb_clics = 0;
                         img_ok += 2;
                         if (img_ok == 25) {
-                            document.getElementById("score").innerHTML = "<strong>" + le_score + "</strong>/20";
+                            document.getElementById("score").innerHTML = "<strong>" + le_score + "</strong>/30";
                             document.getElementById("temps").innerHTML = "Vous avez mis <strong>" + dif_temps + "</strong> secondes";
                         }
                     }

@@ -9,8 +9,6 @@ let le_score = 0;
 let depart = false;
 let temps_debut = new Date().getTime();
 
-
-
 let attente = setTimeout(function() {
     for (let i = 0; i < 16; i++) {
         document.querySelector('#img' + i).src = "mini/miniz.png";
@@ -20,7 +18,7 @@ let attente = setTimeout(function() {
 
 
 
-function generation_dif1() {
+export function generation_dif1() {
     let nb_alea;
     let nb_img = "";
     let test = true;
