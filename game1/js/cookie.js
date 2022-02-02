@@ -64,8 +64,25 @@ export default class Cookie {
     c2.deselectionnee();
   }
 
+  static echangeCookies(c1, c2) {
+   
+      // On échange leurs images et types
+      const imageSrcTmp = c2.htmlImage.src;
+      const typeTmp = c2.type;
+
+      c2.htmlImage.src = c1.htmlImage.src;
+      c2.type = c1.type;
+
+      c1.htmlImage.src = imageSrcTmp;
+      c1.type = typeTmp;
+    
+  }
+
   cachee() {
     this.htmlImage.classList.add("cookieCachee");
+  }
+  undocachee(){
+    this.htmlImage.classList.remove("cookieCachee");
   }
 
   isCache(){

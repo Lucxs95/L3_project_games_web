@@ -17,9 +17,8 @@ export default class Grille {
     do {
       this.remplirTableauDeCookies(6);
       existeAlignement = this.testAlignementDansTouteLaGrille();
-      console.log("ExisteAlignement : " + existeAlignement)
-    } while(existeAlignement)
-    
+      console.log("ExisteAlignement : " + existeAlignement);
+    } while (existeAlignement);
   }
 
   /**
@@ -47,17 +46,19 @@ export default class Grille {
           this.cookiesSelectionnees.push(cookieClickee);
         } else if (this.cookiesSelectionnees.length === 1) {
           cookieClickee.selectionnee();
-          console.log("On essaie de swapper !")
+          console.log("On essaie de swapper !");
           this.cookiesSelectionnees.push(cookieClickee);
           // on essaie de swapper
-          Cookie.swapCookies(this.cookiesSelectionnees[0],
-            this.cookiesSelectionnees[1]);
+          Cookie.swapCookies(
+            this.cookiesSelectionnees[0],
+            this.cookiesSelectionnees[1]
+          );
           // on remet le tableau des cookies selectionnées à 0
           this.cookiesSelectionnees = [];
         } else {
-          console.log("Deux cookies sont déjà sélectionnées...")
+          console.log("Deux cookies sont déjà sélectionnées...");
         }
-      }
+      };
 
       img.ondragstart = (event) => {
         let cookieDragguee = this.getCookieFromImage(event.target);
@@ -66,21 +67,21 @@ export default class Grille {
         // on remet à zero le tableau des cookies selectionnees
         this.cookiesSelectionnees = [];
         this.cookiesSelectionnees.push(cookieDragguee);
-      }
+      };
 
       img.ondragover = (event) => {
         return false;
-      }
+      };
 
       img.ondragenter = (event) => {
         const i = event.target;
         i.classList.add("imgDragOver");
-      }
+      };
 
       img.ondragleave = (event) => {
         const i = event.target;
         i.classList.remove("imgDragOver");
-      }
+      };
 
       img.ondrop = (event) => {
         let cookieDragguee = this.getCookieFromImage(event.target);
@@ -90,12 +91,15 @@ export default class Grille {
         this.cookiesSelectionnees.push(cookieDragguee);
 
         // et on regarde si on peut les swapper
-        Cookie.swapCookies(this.cookiesSelectionnees[0], this.cookiesSelectionnees[1]);
+        Cookie.swapCookies(
+          this.cookiesSelectionnees[0],
+          this.cookiesSelectionnees[1]
+        );
 
         // on remet le tableau des cookies selectionnées à 0
         this.cookiesSelectionnees = [];
         cookieDragguee.htmlImage.classList.remove("imgDragOver");
-      }
+      };
 
       div.appendChild(img);
     });
@@ -122,7 +126,7 @@ export default class Grille {
     for (let l = 0; l < this.lignes; l++) {
       for (let c = 0; c < this.colonnes; c++) {
         //console.log("ligne = " + l + " colonne = " + c);
-        const type = Math.round(Math.random() * (nbDeCookiesDifferents - 1))
+        const type = Math.round(Math.random() * (nbDeCookiesDifferents - 1));
         this.cookies[l][c] = new Cookie(type, l, c);
       }
     }
@@ -137,7 +141,7 @@ export default class Grille {
     alignementExisteLignes = this.testAlignementToutesLesLignes();
     alignementExisteColonnes = this.testAlignementToutesLesColonnes();
 
-    return (alignementExisteLignes || alignementExisteColonnes);
+    return alignementExisteLignes || alignementExisteColonnes;
   }
 
   testAlignementToutesLesLignes() {
@@ -162,7 +166,7 @@ export default class Grille {
       let cookie2 = tabLigne[c + 1];
       let cookie3 = tabLigne[c + 2];
 
-      if ((cookie1.type === cookie2.type) && (cookie2.type === cookie3.type)) {
+      if (cookie1.type === cookie2.type && cookie2.type === cookie3.type) {
         cookie1.cachee();
         cookie2.cachee();
         cookie3.cachee();
@@ -186,15 +190,14 @@ export default class Grille {
     // on parcourt les lignes de la colonne courante
     for (let l = 0; l <= this.colonnes - 3; l++) {
       let cookie1 = this.cookies[l][colonne];
-      let cookie2 = this.cookies[l+1][colonne];
-      let cookie3 = this.cookies[l+2][colonne];
+      let cookie2 = this.cookies[l + 1][colonne];
+      let cookie3 = this.cookies[l + 2][colonne];
 
-      if ((cookie1.type === cookie2.type) && (cookie2.type === cookie3.type)) {
+      if (cookie1.type === cookie2.type && cookie2.type === cookie3.type) {
         cookie1.cachee();
         cookie2.cachee();
         cookie3.cachee();
         alignement = true;
-        
       }
     }
     return alignement;
@@ -202,34 +205,94 @@ export default class Grille {
 
   // Swap des cookies cachées avec des cookies non cachés au dessus (chute)
   swapCookieCacheeCookieDessus() {
-    let c = 8;
-    let cookietmp2;
-    for (let l = 8; l <= 0; l--) {
+    
+
+    for (let c = 8; c >= 0; c--) {
+      console.log("On examine colonne " + c);
+      //let c = 8;
       
-      if (this.cookies[l][c].isCache()) {
-        // memoriser cookie
-        let cookietmp = this.cookies[l][c];
-        console.log(cookietmp);
+      let nbCookieCacheeParCOLONNE = 0;
+      //boucle qui part de la derniere case en bas a droite
+      for (let l = 8; l >= 0; l--) {
+        //let x = l;
 
-        //chercher un cookie non caché
-        while (this.cookies[l][c].isCache()){
-          c--;
-          console.log(c);
+        //verification de isCaché des cookies en allant de bas en haut et de droite a gauche
+        console.log("On examine la ligne " + l);
+
+        if (this.cookies[l][c].isCache()) {
+          // si oui : verification cookie
+          nbCookieCacheeParCOLONNE++;
+
+          console.log("ce cookie est caché");
+
+          //stop bug a la ligne 0
+          /*if ( (x-1)<0){
+            x = 1;
+          }*/
+
+          // on selectionne cookie 1 a swap
+          this.cookiesSelectionnees[0] = this.cookies[l][c];
+
+          // stop bug swap avec des cookies supprimé
+          //for (let a = 1 ; a <= 1; a++) {
+          /*let a =1;
+            if (this.cookies[(x-a)][c].isCache()){
+              console.log("cookie au dessus caché aussi");
+              x = x-1;
+            }*/
+          //}
+          // on selectionne cookie 2 a swap qui est a la position n-1
+
+          // On cherche l'index de la première cookie non cachée au dessus
+          // de la case courante. Renvoie -1 s'il n'y en a plus (si on
+          // est arrivée à la ligne 0 et qu'elle est cachée aussi)
+          const indexPremiereCasePasCacheeAuDessus = this.findPasCacheeAuDessus(l, c);
+          console.log("indexPremiereCasePasCacheeAuDessus : " + indexPremiereCasePasCacheeAuDessus);
+          this.cookiesSelectionnees[1] = this.cookies[indexPremiereCasePasCacheeAuDessus][c];
+
+
+          // on essaie de swap avec le cookie du dessus
+          Cookie.echangeCookies(this.cookiesSelectionnees[0],this.cookiesSelectionnees[1]);
+
+          // on cache et decache les cookies
+          this.cookiesSelectionnees[0].undocachee();
+          this.cookiesSelectionnees[1].cachee();
+
+          // on remet le tableau des cookies selectionnées à 0
+          this.cookiesSelectionnees = [];
+        } else {
+          //si non on passe au cookie au dessus
+          //console.log(" ce cookie n'est PAS cachée");
         }
-        console.log(c);
-        //on est sur la premiere pas cachée --> puis swapper
-        cookietmp2 = this.cookies[l][c];
-        this.cookies[l][c] = cookietmp;
-        cookietmp = cookietmp2;
-        console.log(cookietmp);
-        console.log("swap ok");
-        return 
 
       }
-      else{
-        console.log(" ce cookie n'est pas cachée");
-      }
-
+      console.log("COLONNE " + c + " contient " + nbCookieCacheeParCOLONNE +" cookie cachée" );
     }
+    return 0;
+  }
+
+  findPasCacheeAuDessus(ligne, colonne) {
+    console.log("je cherche la premeiere case au dessus de l : " + ligne);
+    // on va partir de ligne-1 et on remonte le tableau jq
+    // la premiere case non cachée ou la case 0
+
+    let l = ligne - 1;
+    while (l > 0) {
+      if (this.cookies[0][colonne].isCache()) {
+        break;
+      }
+      if (!this.cookies[l][colonne].isCache()) {
+        break;
+      }
+      l--;
+    }
+    if ( l<0){
+       l = 0;
+    }
+
+    console.log("findPasCacheeAuDessus:" + l);
+    // soit on a l < 0; soit on a l qui vaut l'index de la première l'index
+    // de la première case nin cachée
+    return l;
   }
 }

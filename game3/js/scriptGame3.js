@@ -30,6 +30,9 @@ function init() {
         temps--;
         if (temps<= 0) {
             temps = 0;
+            //document.containerPlay.style.background-color = "black";
+            //document.getElementById("containerPlay").style.opacity = 0.4;
+
         }else{
         }
       }
@@ -46,9 +49,11 @@ function init() {
 
     //verification que input = random
     function verifierJustePrix(){
+        var input = document.getElementById("nombre").value;
         const prixElement = document.getElementById("nombre").innerText;
         console.log(justePrix);
         console.log(prixElement);
+        
         /*while (prixElement.innerText !== justePrix) {
             console.log("nope");
             return ("perdu");
@@ -63,7 +68,7 @@ function init() {
   let c = document.querySelector("#parisButton");
   c.onclick = () => {
     let parisButtonGo = verifierJustePrix();
-    console.log("parisButtonGo : " + parisButtonGo)
+    console.log("parisButtonGo : " + parisButtonGo);
   }
 
 
@@ -83,7 +88,8 @@ function init() {
   let b = document.querySelector("#commencer");
   b.onclick = () => {
     let afficherGame = afficherJeu();
-    console.log("afficherGame : " + afficherGame)
+    console.log("afficherGame : " + afficherGame);
+    alert(justePrix);
   }
 
   
