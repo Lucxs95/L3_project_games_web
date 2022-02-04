@@ -321,3 +321,7 @@ a:active {
     cursor: pointer;
     box-shadow: 6px 6px 0px #aaa;
 }
+
+img {
+    cursor: pointer;
+}

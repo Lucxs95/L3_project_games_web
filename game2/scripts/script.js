@@ -1,88 +1,177 @@
-import { generation_dif1 } from "./dif1.js";
-import Dif2 from "./dif2.js";
-import Dif3 from "./dif3.js";
-window.onload = init;
+import Game from "./Game.js";
+window.onload = () => {
+    const difficulty = new Difficulty();
 
-let grille;
+    const cookie = document.cookie.split('=');
+    if (cookie.length <= 1) {
+        difficulty.setupLevelOne();
+    } else {
+        switch (cookie[1]) {
+            case "level1":
+                difficulty.setupLevelOne();
+                break;
+            case "level2":
+                difficulty.setupLevelTwo();
+                break;
+            case "level3":
+                difficulty.setupLevelThree();
+                break;
+        }
+    }
 
-function init() {
-    console.log("Page et ressources prêtes à l'emploi");
-    this.grille = document.querySelector(".grille");
-    this.grille2 = document.querySelector(".grille2");
-    this.grille3 = document.querySelector(".grille3");
-    this.grille2.style.display = "none";
-    this.grille3.style.display = "none";
+};
 
-    let dif1 = document.querySelector("#dif1");
-    dif1.onclick = () => {
-        this.grille.style.display = "";
+let depart = false;
+let temps_debut = new Date().getTime();
+
+class Difficulty {
+    constructor() {
+
+        this.grille = document.querySelector(".grille");
+        this.grille2 = document.querySelector(".grille2");
+        this.grille3 = document.querySelector(".grille3");
+
+        let dif1 = document.querySelector("#dif1");
+        dif1.onclick = () => {
+            this.setupLevelOne();
+        }
+
+        let dif2 = document.querySelector("#dif2");
+        dif2.onclick = () => {
+            this.setupLevelTwo();
+        }
+
+        let dif3 = document.querySelector("#dif3");
+        dif3.onclick = () => {
+            this.setupLevelThree();
+        }
+    }
+
+    setupLevelThree() {
+        this.displayGrid(this.grille3);
+        this.generate("level3");
+        document.cookie = "level=level3";
+    }
+
+    setupLevelTwo() {
+        this.displayGrid(this.grille2);
+        this.generate("level2");
+        document.cookie = "level=level2";
+    }
+
+    setupLevelOne() {
+        this.displayGrid(this.grille);
+        this.generate("level1");
+        document.cookie = "level=level1";
+    }
+
+    displayGrid(gridToDisplay) {
+        this.grille.style.display = "none";
         this.grille2.style.display = "none";
         this.grille3.style.display = "none";
-        generation_dif1();
+        gridToDisplay.style.display = ""
     }
 
-    let dif2 = document.querySelector("#dif2");
-    dif2.onclick = () => {
-        this.grille.style.display = "none";
-        this.grille2.style.display = "";
-        this.grille3.style.display = "none";
+    generate(level) {
+        switch (level) {
+            case "level1":
+                this.GenerateLvl1();
+                break;
+            case "level2":
+                this.GenerateLvl2();
+                break;
+            case "level3":
+                this.GenerateLvl3();
+                break;
+        }
 
     }
 
-    let dif3 = document.querySelector("#dif3");
-    dif3.onclick = () => {
-        this.grille.style.display = "none";
-        this.grille2.style.display = "none";
-        this.grille3.style.display = "";
-
-    }
-}
-
-function verifier(limg, source) {
-    if (depart == true) {
-        let dif_temps = Math.floor((new Date().getTime() - temps_debut) / 1000);
-        nb_clics++;
-        document.getElementById(limg).src = "mini/" + source + ".png";
-
-        if (nb_clics == 1) {
-            mini1 = source;
-            case1 = limg;
-        } else {
-            mini2 = source;
-            case2 = limg;
-
-            if (case1 != case2) {
-                depart = false;
-                if (mini1 != mini2) {
-                    let attente = setTimeout(function() {
-                        document.getElementById(case1).src = "mini/miniz.png";
-                        document.getElementById(case2).src = "mini/miniz.png";
-                        depart = true;
-                        nb_clics = 0;
-                        nb_erreurs++;
-                        if (nb_erreurs < 11) {
-                            le_score = 10 - nb_erreurs;
-                        }
-                        document.getElementById("score").innerHTML = "<strong>" + le_score + "</strong>/10";
-                    }, 1000);
-                } else {
-                    depart = true;
-                    nb_clics = 0;
-                    img_ok += 2;
-                    if (img_ok == 16) {
-                        document.getElementById("score").innerHTML = "<strong>" + le_score + "</strong>/10";
-                        document.getElementById("temps").innerHTML = "Vous avez mis <strong>" + dif_temps + "</strong> secondes";
-                    }
-                }
-            } else {
-                if (nb_clics == 2) {
-                    nb_clics = 1;
+    GenerateLvl1() {
+        const game = new Game();
+        setTimeout(function() {
+            for (let i = 0; i < 16; i++) {
+                document.querySelector('.grille #img' + i).src = "mini/miniz.png";
+            }
+            depart = true;
+        }, 4000);
+        let nb_alea;
+        let nb_img = "";
+        let test = true;
+        let chaine = "";
+        for (let i = 0; i < 16; i++) {
+            while (test == true) {
+                nb_alea = Math.floor(Math.random() * 16) + 1; //Pour génération dans les 16 cases
+                if (chaine.indexOf("-" + nb_alea + "-") > -1)
+                    nb_alea = Math.floor(Math.random() * 16) + 1;
+                else {
+                    nb_img = Math.floor((nb_alea + 1) / 2); //8 paires pour 16 places ==> 2 générations différentes par image
+                    //onClick='verifier(\"img" + i + "\", \"mini" + nb_img + "\")'
+                    document.querySelector(".grille #case" + i).innerHTML = "<img id='img" + i + "' src='mini/mini" + nb_img + ".png'  alt='' />";
+                    const img = document.getElementById("img" + i);
+                    img.addEventListener('click', game.verifier("img" + i, "mini" + nb_img, "level1"));
+                    chaine += "-" + nb_alea + "-";
+                    test = false;
                 }
             }
-            if (dif_temps > 180) {
-                document.getElementById("temps").innerHTML = "Le temps imparti est dépassé, vous avez perdu !";
-                depart = false;
+            test = true;
+        }
+    }
+
+    GenerateLvl2() {
+        setTimeout(function() {
+            for (let i = 0; i < 25; i++) {
+                document.querySelector('.grille2 #img' + i).src = "mini/miniz.png";
             }
+            depart = true;
+        }, 4000);
+        let nb_alea;
+        let nb_img = "";
+        let test = true;
+        let chaine = "";
+        for (let i = 0; i < 25; i++) {
+            while (test == true) {
+                nb_alea = Math.floor(Math.random() * 25) + 1; //Pour génération dans les 16 cases
+                if (chaine.indexOf("-" + nb_alea + "-") > -1)
+                    nb_alea = Math.floor(Math.random() * 25) + 1;
+                else {
+                    nb_img = Math.floor((nb_alea + 1) / 2); //8 paires pour 16 places ==> 2 générations différentes par image
+                    document.querySelector(".grille2 #case" + i).innerHTML = "<img id='img" + i + "' src='mini/mini" + nb_img + ".png'  alt='' />";
+                    const img = document.getElementById("img" + i);
+                    img.addEventListener('click', game.verifier("img" + i, "mini" + nb_img, "level2"));
+                    chaine += "-" + nb_alea + "-";
+                    test = false;
+                }
+            }
+            test = true;
+        }
+    }
+    GenerateLvl3() {
+        setTimeout(function() {
+            for (let i = 0; i < 36; i++) {
+                document.querySelector('.grille3 #img' + i).src = "mini/miniz.png";
+            }
+            depart = true;
+        }, 4000);
+        let nb_alea;
+        let nb_img = "";
+        let test = true;
+        let chaine = "";
+        for (let i = 0; i < 36; i++) {
+            while (test == true) {
+                nb_alea = Math.floor(Math.random() * 36) + 1; //Pour génération dans les 16 cases
+                if (chaine.indexOf("-" + nb_alea + "-") > -1)
+                    nb_alea = Math.floor(Math.random() * 36) + 1;
+                else {
+                    nb_img = Math.floor((nb_alea + 1) / 2); //8 paires pour 16 places ==> 2 générations différentes par image
+                    document.querySelector(".grille3 #case" + i).innerHTML = "<img id='img" + i + "' src='mini/mini" + nb_img + ".png'  alt='' />";
+                    const img = document.getElementById("img" + i);
+                    img.addEventListener('click', game.verifier("img" + i, "mini" + nb_img, "level3"));
+                    chaine += "-" + nb_alea + "-";
+                    test = false;
+                }
+            }
+            test = true;
         }
     }
 }
