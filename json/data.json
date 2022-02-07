@@ -1,0 +1,43 @@
+{
+    "player_1": {
+        "status": "0",
+        "name": "John",
+        "best_score_game1": "5",
+        "best_score_game2": "5",
+        "best_score_game3": "5",
+        "trophies" : "null"
+    },
+    "player_2": {
+        "status": "0",
+        "name": "John",
+        "best_score_game1": "5",
+        "best_score_game2": "5",
+        "best_score_game3": "5",
+        "trophies" : "null"
+    },
+    "player_3": {
+        "status": "0",
+        "name": "John",
+        "best_score_game1": "5",
+        "best_score_game2": "5",
+        "best_score_game3": "5",
+        "trophies" : "null"
+    },
+    "player_4": {
+        "status": "0",
+        "name": "John",
+        "best_score_game1": "5",
+        "best_score_game2": "5",
+        "best_score_game3": "5",
+        "trophies" : "null"
+    },
+    "player_5": {
+        "status": "0",
+        "name": "John",
+        "best_score_game1": "5",
+        "best_score_game2": "5",
+        "best_score_game3": "5",
+        "trophies" : "null"
+    }
+
+}

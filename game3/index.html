@@ -8,12 +8,15 @@
     <link rel="icon" type="image/png" href="???.png">
     <script type="module" src="../script.js"></script>
     <script type="module" src="./js/scriptGame3.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 
 
 <body>
 
-  <header><h1>GAMES WEEB</h1></header>
+  <header>
+    <h1>GAMES WEEB </br></h1>
+  </header>
   <div class="filters">
     <a class="filter_link" style="background: #3faaf5;" href="../index.html" >MENU</a>
     <a class="filter_link" style="background: #57af56;" href="../game1/index.html">GAME 1</a>
@@ -22,41 +25,75 @@
     <a class="filter_link" style="background: #580e04;" href="../infos/index.html">INFOS</a>
   </div>
 
+  <div class="containerScore">
+    
+    <div class="box">
+      <div id="grille">
+        <p>SCORE</p>
+        <div>1er - Lucas : 50pts</div>
+        <div>2eme -</div>
+        <div>3eme -</div>
+        <div>4eme -</div>
+        <div>5eme -</div>
 
-
-  <div class="container">
-    <div class="containerPlay">
-    <div class="play">
-      <center>
-        <h3>Le prix de la vitrine est entre 0 et <span class="prixMax">100</span>.</h3>
-
-        <div id="timer">10</div>
-
-
-        <h2 class="secondes">Secondes</h2>
-        <h2 class="reponse">Trouvez le Juste Prix de :</h2>
-        <div id="deleteStart">
-          <img src="../assets/justeprix.png">
-        </div>
-        <div id="afficherJeu">
-          <img src="">
-        </div>
-
-        <div id="startGame">
-          <form id="paris" class="form-inline" role="form">
-            <input type="text" id="nombre" placeholder="Entrez un nombre" autocomplete="off">
-            <button type="submit" id = "parisButton">Parier !</button>
-          </form>
-        </div>
-        </br>
-        <div id="deleteButtonStart">
-          <button id="commencer"> Commencer !</button>
-        </div>
-        </center>
       </div>
+      <div class="midmid">
+        <h2 class="over">GAME OVER</h2>
+        <h2 class="over1">Vous avez trouvé</h2>
+        <h2 id="score">0</h2>
+        <h2 class="over2">prix</h2>
+      </div>
+      <div class="mid">
+      
+            <h3>Le prix de la vitrine est entre 0 et <span class="prixMax">50 au premier niveau puis x2 à chaque bonne reponse</span>.</h3>
+
+            <div id="timer">10</div>
+
+
+            <h2 class="secondes">Secondes</h2>
+            <h2 class="reponse">Trouvez le Juste Prix de :</h2>
+            <div id="PlusMoins"></div>
+            <div id="deleteStart">
+              <img src="../assets/justeprix.png">
+            </div>
+            <div id="afficherJeu">
+              <img src="">
+            </div>
+
+            <div id="startGame">
+              <form id="paris" class="form-inline" role="form">
+                <input type="text" id="nombre" placeholder="Entrez un nombre" autocomplete="off">
+                <input type="button" id = "parisButton">Parier !</button>
+              </form>
+            </div>
+            </br>
+            <div id="deleteButtonStart">
+              <input type="button" id="commencer"> Commencer !</button>
+            </div>
+      
+      </div>
+
+
+   
+        <button type="submit" id = "nav-icon1">REGLES DU JEU</button></h1> 
+      <div class="hero">
+        <div class="navbar container">
+           
+  
+            <div class="overlay" id="overlay">
+                <div class="overlay-content">
+                    <p>Nous retrouvons les regles ici</p>
+                </div>
+            </div>
+        </div>
+        
+      </div>
+
+      
     </div>
   </div>
-    
+
+  <script src="./js/function.js" type="text/javascript"></script>
   </body>
 
 </html>
