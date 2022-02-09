@@ -1,96 +1,118 @@
 window.onload = init;
 
+
 function init() {
-    console.log("Page et ressources prêtes à l'emploi");
+  console.log("Page et ressources prêtes à l'emploi");
+  const game = new Game();
+  game.play();
+  
+  let json = require('../../json/data.json');
+  console.log(json);
 
+  //let jsonParsed = JSON.parse(json);
+  //console.log(jsonParsed);
+}
 
+class Game {
+  constructor() {
     //définition des variables
-    let temps = 10;
-    let min = 0;
-    let max =50;
-    let justePrix = entierAleatoire(min,max);
+    this.temps = 15;
+    this.min = 0;
+    this.max = 50;
+    this.justePrix = this.entierAleatoire(this.min, this.max);
+    this.plusMoins = "";
+    this.score = 0;
 
+    document
+      .getElementById("parisButton")
+      .addEventListener("click", this.verifierJustePrix.bind(this));
 
+    document.getElementById("nombre").addEventListener("click", () => {
+      const numberGivenByPlayer = document.getElementById("nombre").value;
+      //console.log(numberGivenByPlayer);
 
-    //récuperation de certain variables de HTML grace a leur id
-    const timerElement = document.getElementById("timer");
-    const parisElement = document.getElementById("parisButton");
-    //console.log(parisElement);
-    const prixElement = document.getElementById("nombre").innerText;
-    //console.log(prixElement);
+    document.getElementById("nombre").addEventListener("keyup", function (event) {
+          event.preventDefault();
+          if (event.keyCode === 13) {
+            document.getElementById("parisButton").click();
+          }
+        });
 
+    });
 
-    //renvoie le contenu textuel du nœud spécifié
-    timerElement.innerText = temps;
-    //prixElement.innerText = nombre;
-    
-
-    function diminuerTemps() {
-        timerElement.innerText = temps;
-        temps--;
-        if (temps<= 0) {
-            temps = 0;
-            //document.containerPlay.style.background-color = "black";
-            //document.getElementById("containerPlay").style.opacity = 0.4;
-
-        }else{
-        }
-      }
-    
-
-
-    //return un entier aleatoire
-    function entierAleatoire(min, max)
-    {
-     return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-    console.log(entierAleatoire(min,max));
-
-
-    //verification que input = random
-    function verifierJustePrix(){
-        var input = document.getElementById("nombre").value;
-        const prixElement = document.getElementById("nombre").innerText;
-        console.log(justePrix);
-        console.log(prixElement);
-        
-        /*while (prixElement.innerText !== justePrix) {
-            console.log("nope");
-            return ("perdu");
-            }
-        console.log("yep");
-        return ("gg le prix est de " + prixElement.innerText);
-        }*/
-        return 0;
-    }
-
-    //recupere le bouton parier et lance la fonction associé
-  let c = document.querySelector("#parisButton");
-  c.onclick = () => {
-    let parisButtonGo = verifierJustePrix();
-    console.log("parisButtonGo : " + parisButtonGo);
+    document
+      .getElementById("commencer")
+      .addEventListener("click", this.afficherJeu.bind(this));
   }
 
+  play() {
+    this.diminuerTemps();
+  }
 
+  diminuerTemps() {
+    const timerElement = document.getElementById("timer");
+    timerElement.innerText = this.temps;
+    this.temps--;
+    if (this.temps < 0) {
+      this.stop();
+      this.temps = 0;
+    } else {
+    }
+  }
 
+  entierAleatoire(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 
+  verifierJustePrix() {
+    const plusMoinsElement = document.getElementById("PlusMoins");
+    let inputNumberByPlayer = document.getElementById("nombre").value;
+    const scoreElement = document.getElementById("score");
+    scoreElement.innerText = this.score;
+    console.log(this.justePrix);
+    console.log(inputNumberByPlayer);
+
+    if (inputNumberByPlayer == this.justePrix) {
+      console.log("yep");
+      this.plusMoins = "GG chercher de nouveau un prix";
+      this.score++;
+      this.max = this.max * 2;
+      this.justePrix = this.entierAleatoire(this.min, this.max);
+      console.log(this.score);
+      console.log(this.justePrix);
+    } else {
+      if (inputNumberByPlayer >= this.justePrix) {
+        console.log("-");
+        this.plusMoins = "-";
+      } else {
+        console.log("+");
+        this.plusMoins = "+";
+      }
+    }
+    plusMoinsElement.innerText = this.plusMoins;
+  }
 
   //fonction lancant le jeu en appuyant sur le bouton commencer
-  function afficherJeu() {
+  afficherJeu() {
     document.getElementById("startGame").style.display = "contents";
     document.getElementById("deleteStart").style.display = "none";
     document.getElementById("deleteButtonStart").style.display = "none";
-    setInterval(diminuerTemps, 1000);
+    setInterval(this.diminuerTemps.bind(this), 1000);
     return 0;
   }
 
-  //recupere le bouton commencer et lance le jeu en enlevant ce meme bouton en affichant input et supprimant l'image principale
-  let b = document.querySelector("#commencer");
-  b.onclick = () => {
-    let afficherGame = afficherJeu();
-    console.log("afficherGame : " + afficherGame);
-    alert(justePrix);
+  stop() {
+    const scoreElement = document.getElementById("score");
+    scoreElement.innerText = this.score;
+    document.querySelector(".mid").style.display = "none";
+    document.querySelector(".midmid").style.display = "inline-block";
   }
 
-  
+  restart() {}
+
+  ParseJSON(){
+    textNodes = JSON.parse(jsondata.responseText);
+  }
 }
+
+

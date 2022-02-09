@@ -1,5 +1,5 @@
 html {
-  background-image : url(./assets/backgroundcandy.png );
+  background-image : url(./assets/Retro_Futurism_Background.jpg);
   background-repeat: no-repeat;
   padding-top :  20px;
 }
@@ -11,7 +11,7 @@ header{
 
 body {
     margin-top: -20px;
-    font-family: roboto;
+    font-family: OCR A Std, monospace;
     margin-bottom: auto;
   }
   ul {
@@ -117,7 +117,7 @@ body {
       transition: opacity 0.3s 0s, visibility 0s 0s;
     }
     html {
-      background-image : url(./assets/backgroundcandy.png );
+      background-image : url(./assets/Retro_Futurism_Background.jpg);
       background-repeat: no-repeat;
       background-size: cover;
       
@@ -389,7 +389,7 @@ body {
     padding: 0.6em 1.2em;
     background-color: #f82f53;
     color: #fff;
-    font-family: "PT Sans", sans-serif;
+    font-family: OCR A Std, monospace;
     font-size: 16px;
     font-size: 1rem;
     cursor: pointer;
@@ -553,3 +553,74 @@ body {
     margin-right: 10px;
   }
   
+  /* -- Navigation -- */
+.overlay-content p{
+  color : white;
+  font-size : 20px;
+}
+
+span.logo {
+  position: absolute;
+  margin-top: 20px;
+  color: white;
+  font-family: OCR A Std, monospace;
+  font-size: 36px;
+  line-height: 1;
+}
+
+#nav-icon1 {
+
+  position: relative;
+  margin-top: 30px;
+
+  cursor: pointer;
+  z-index: 999;
+
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  background-color: rgba(58, 58, 58, 0.8);
+  margin-top: 340px;
+  height : 50px;
+
+  display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.9);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  overflow: hidden;
+  z-index: 1;
+}
+.overlay.open {
+  opacity: 1;
+  visibility: visible;
+  height: 100%;
+}
+
+.overlay-content {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
