@@ -1,15 +1,22 @@
 window.onload = init;
 
+
 function init() {
   console.log("Page et ressources prêtes à l'emploi");
   const game = new Game();
   game.play();
+  
+  let json = require('../../json/data.json');
+  console.log(json);
+
+  //let jsonParsed = JSON.parse(json);
+  //console.log(jsonParsed);
 }
 
 class Game {
   constructor() {
     //définition des variables
-    this.temps = 50;
+    this.temps = 15;
     this.min = 0;
     this.max = 50;
     this.justePrix = this.entierAleatoire(this.min, this.max);
@@ -23,6 +30,14 @@ class Game {
     document.getElementById("nombre").addEventListener("click", () => {
       const numberGivenByPlayer = document.getElementById("nombre").value;
       //console.log(numberGivenByPlayer);
+
+    document.getElementById("nombre").addEventListener("keyup", function (event) {
+          event.preventDefault();
+          if (event.keyCode === 13) {
+            document.getElementById("parisButton").click();
+          }
+        });
+
     });
 
     document
@@ -61,11 +76,10 @@ class Game {
       console.log("yep");
       this.plusMoins = "GG chercher de nouveau un prix";
       this.score++;
-      this.max = this.max*2;
+      this.max = this.max * 2;
       this.justePrix = this.entierAleatoire(this.min, this.max);
       console.log(this.score);
       console.log(this.justePrix);
-
     } else {
       if (inputNumberByPlayer >= this.justePrix) {
         console.log("-");
@@ -87,19 +101,18 @@ class Game {
     return 0;
   }
 
-  stop(){
+  stop() {
     const scoreElement = document.getElementById("score");
     scoreElement.innerText = this.score;
     document.querySelector(".mid").style.display = "none";
-    document.querySelector(".midmid").style.display =  "inline-block";
+    document.querySelector(".midmid").style.display = "inline-block";
   }
 
-  restart(){
+  restart() {}
 
+  ParseJSON(){
+    textNodes = JSON.parse(jsondata.responseText);
   }
-
-
-  
 }
 
 
