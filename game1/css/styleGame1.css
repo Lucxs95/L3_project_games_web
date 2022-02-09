@@ -10,8 +10,8 @@
     display: flex;
     justify-content: space-around;
 }
-#buttonTestChute{
 
+#buttonTestChute {
     margin-left: 50%;
 }
 
@@ -27,7 +27,6 @@
     background-color: rgba(100, 100, 100, 0.5);
     border: 1px;
     border: 1px solid #999;
-
     display: grid;
     /* 1fr signifie "une fraction de la largeur de la grille", le repeat dit "9 cases" 
        égales à une fraction (1/9ème) Voir https://css-tricks.com/snippets/css/complete-guide-grid/ */
@@ -65,7 +64,6 @@
 .cookies-selected {
     transform: scale(1.2, 1.2);
     filter: drop-shadow(4px 4px 4px #222);
-
 }
 
 .imgDragOver {
@@ -73,6 +71,58 @@
 }
 
 .cookieCachee {
-    display:none;
+    display: none;
 }
 
+#grille2 {
+    width: 200px;
+    height: 140%;
+    text-align: center;
+    background-color: rgba(58, 58, 58, 0.8);
+    border: 1px;
+    border: 1px solid #999;
+    margin-top: 180px;
+    border-radius: 10px;
+}
+
+#grille2 p {
+    color: white;
+    font-size: 150%;
+    font-family: OCR A Std, monospace;
+}
+
+#grille2 div {
+    border: 2px solid rgba(255, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: 0.5s all;
+    text-align: center;
+    color: white;
+}
+
+.mid {
+    display: inline-block;
+    width: auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    /* 0.5 - semi-transparent */
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 10px;
+}
+
+.box {
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 10px;
+}
+
+#main {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#buttonTestChute {
+    margin: auto;
+}
