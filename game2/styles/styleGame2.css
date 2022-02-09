@@ -3,24 +3,9 @@
     padding: 0px;
 }
 
-body {
-    margin: 0px;
-    padding: 0px;
-    /*background:#FFFFFF;
-	background-repeat:repeat-x;*/
-    width: 100%;
-    font-family: Calibri;
-    font-size: 13px;
-    color: #666666;
-    background-color: #EDEEEE;
-    background-image: url(../images/motifgb2.jpg);
-    background-attachment: fixed;
-}
-
 h1 {
     font-size: 30px;
     font-weight: bold;
-    margin-bottom: 10px;
 }
 
 .grille {
@@ -218,7 +203,7 @@ a:active {
 
 .div_conteneur_page {
     margin-top: 5px;
-    width: 1200px;
+    width: 1000px;
     text-align: left;
     border: #666666 1px solid;
     height: auto;
@@ -232,7 +217,8 @@ a:active {
 
 .titre_page {
     width: auto;
-    padding-top: 18px;
+    padding-top: 2px;
+    padding-bottom: 40px;
     height: 42px;
     font-family: Calibri;
     color: #FFFFFF;
@@ -278,9 +264,13 @@ a:active {
     height: auto;
     background-color: #ccccff;
     border: #7030a0 1px solid;
-    padding-top: 12px;
+    padding-top: 2px;
     box-shadow: 6px 6px 0px #aaa;
     color: #7030a0;
+}
+
+.sous_consign>h1 {
+    margin-bottom: 10px;
 }
 
 .zone_jeu {
@@ -324,4 +314,44 @@ a:active {
 
 .case>img {
     cursor: pointer;
+}
+
+.box {
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 10px;
+}
+
+.box>div {
+    padding: 15px;
+    text-align: center;
+    color: #000000;
+    font-family: OCR A Std, monospace;
+}
+
+#grille {
+    width: 200px;
+    height: 140%;
+    text-align: center;
+    background-color: rgba(58, 58, 58, 0.8);
+    border: 1px;
+    border: 1px solid #999;
+    margin-top: 180px;
+    border-radius: 10px;
+}
+
+#grille p {
+    color: white;
+    font-size: 150%;
+    font-family: OCR A Std, monospace;
+}
+
+#grille div {
+    border: 2px solid rgba(255, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: 0.5s all;
+    text-align: center;
+    color: white;
 }
