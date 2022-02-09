@@ -26,7 +26,7 @@ let temps_debut = new Date().getTime();
 
 class Difficulty {
     constructor() {
-
+        this.game = new Game();
         this.grille = document.querySelector(".grille");
         this.grille2 = document.querySelector(".grille2");
         this.grille3 = document.querySelector(".grille3");
@@ -47,22 +47,22 @@ class Difficulty {
         }
     }
 
-    setupLevelThree() {
-        this.displayGrid(this.grille3);
-        this.generate("level3");
-        document.cookie = "level=level3";
+    setupLevelOne() {
+        document.cookie = "level=level1";
+        this.displayGrid(this.grille);
+        this.generate("level1");
     }
 
     setupLevelTwo() {
+        document.cookie = "level=level2";
         this.displayGrid(this.grille2);
         this.generate("level2");
-        document.cookie = "level=level2";
     }
 
-    setupLevelOne() {
-        this.displayGrid(this.grille);
-        this.generate("level1");
-        document.cookie = "level=level1";
+    setupLevelThree() {
+        document.cookie = "level=level3";
+        this.displayGrid(this.grille3);
+        this.generate("level3");
     }
 
     displayGrid(gridToDisplay) {
@@ -88,7 +88,6 @@ class Difficulty {
     }
 
     GenerateLvl1() {
-        const game = new Game();
         setTimeout(function() {
             for (let i = 0; i < 16; i++) {
                 document.querySelector('.grille #img' + i).src = "mini/miniz.png";
@@ -105,13 +104,15 @@ class Difficulty {
                 if (chaine.indexOf("-" + nb_alea + "-") > -1)
                     nb_alea = Math.floor(Math.random() * 16) + 1;
                 else {
+                    ({ chaine, test } = this.addClickBehaviorToCase(nb_alea, i, chaine, test));
+                    /*
                     nb_img = Math.floor((nb_alea + 1) / 2); //8 paires pour 16 places ==> 2 générations différentes par image
                     //onClick='verifier(\"img" + i + "\", \"mini" + nb_img + "\")'
                     document.querySelector(".grille #case" + i).innerHTML = "<img id='img" + i + "' src='mini/mini" + nb_img + ".png'  alt='' />";
                     const img = document.getElementById("img" + i);
-                    img.addEventListener('click', game.verifier("img" + i, "mini" + nb_img, "level1"));
+                    img.addEventListener('click', this.checkImage.bind(this, i, nb_img));
                     chaine += "-" + nb_alea + "-";
-                    test = false;
+                    test = false;*/
                 }
             }
             test = true;
@@ -126,7 +127,6 @@ class Difficulty {
             depart = true;
         }, 4000);
         let nb_alea;
-        let nb_img = "";
         let test = true;
         let chaine = "";
         for (let i = 0; i < 25; i++) {
@@ -135,12 +135,7 @@ class Difficulty {
                 if (chaine.indexOf("-" + nb_alea + "-") > -1)
                     nb_alea = Math.floor(Math.random() * 25) + 1;
                 else {
-                    nb_img = Math.floor((nb_alea + 1) / 2); //8 paires pour 16 places ==> 2 générations différentes par image
-                    document.querySelector(".grille2 #case" + i).innerHTML = "<img id='img" + i + "' src='mini/mini" + nb_img + ".png'  alt='' />";
-                    const img = document.getElementById("img" + i);
-                    img.addEventListener('click', game.verifier("img" + i, "mini" + nb_img, "level2"));
-                    chaine += "-" + nb_alea + "-";
-                    test = false;
+                    ({ chaine, test } = this.addClickBehaviorToCase(nb_alea, i, chaine, test));
                 }
             }
             test = true;
@@ -154,7 +149,6 @@ class Difficulty {
             depart = true;
         }, 4000);
         let nb_alea;
-        let nb_img = "";
         let test = true;
         let chaine = "";
         for (let i = 0; i < 36; i++) {
@@ -163,15 +157,35 @@ class Difficulty {
                 if (chaine.indexOf("-" + nb_alea + "-") > -1)
                     nb_alea = Math.floor(Math.random() * 36) + 1;
                 else {
-                    nb_img = Math.floor((nb_alea + 1) / 2); //8 paires pour 16 places ==> 2 générations différentes par image
-                    document.querySelector(".grille3 #case" + i).innerHTML = "<img id='img" + i + "' src='mini/mini" + nb_img + ".png'  alt='' />";
-                    const img = document.getElementById("img" + i);
-                    img.addEventListener('click', game.verifier("img" + i, "mini" + nb_img, "level3"));
-                    chaine += "-" + nb_alea + "-";
-                    test = false;
+                    ({ chaine, test } = this.addClickBehaviorToCase(nb_alea, i, chaine, test));
                 }
             }
             test = true;
         }
+    }
+
+    addClickBehaviorToCase(nb_alea, i, chaine, test) {
+        let cookie = document.cookie.split('=');
+        let nb_img = Math.floor((nb_alea + 1) / 2); //8 paires pour 16 places ==> 2 générations différentes par image
+        switch (cookie[1]) {
+            case "level1":
+                document.querySelector(".grille #case" + i).innerHTML = "<img id='img" + i + "' src='mini/mini" + nb_img + ".png'  alt='' />";
+                break;
+            case "level2":
+                document.querySelector(".grille2 #case" + i).innerHTML = "<img id='img" + i + "' src='mini/mini" + nb_img + ".png'  alt='' />";
+                break;
+            case "level3":
+                document.querySelector(".grille3 #case" + i).innerHTML = "<img id='img" + i + "' src='mini/mini" + nb_img + ".png'  alt='' />";
+                break;
+        }
+        const img = document.getElementById("img" + i);
+        img.addEventListener('click', this.checkImage.bind(this, i, nb_img));
+        chaine += "-" + nb_alea + "-";
+        test = false;
+        return { chaine, test };
+    }
+
+    checkImage(i, nb_img) {
+        this.game.verifier("img" + i, "mini" + nb_img, "level1")
     }
 }

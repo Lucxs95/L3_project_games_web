@@ -322,6 +322,6 @@ a:active {
     box-shadow: 6px 6px 0px #aaa;
 }
 
-img {
+.case>img {
     cursor: pointer;
 }
