@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-	
+
 
 <head>
     <meta charset="utf-8">
@@ -11,33 +11,40 @@
 </head>
 
 <body>
-  <header><h1>GAMES WEEB</h1></header>
-  <div class="filters">
-      <a class="filter_link" style="background: #3faaf5;" href="./" >MENU</a>
-      <a class="filter_link" style="background: #57af56;" href="./game1/index.html">GAME 1</a>
-      <a class="filter_link" style="background: #fda729;" href="./game2/index.html">GAME 2</a>
-      <a class="filter_link" style="background: #d12710;" href="./game3/index.html">GAME 3</a>
-      <a class="filter_link" style="background: #580e04;" href="./game3/index.html">INFOS</a>
+    <header>
+        <h1>GAMES WEEB</h1>
+        <form id="nom" role="form">
+            <input type="text" id="name" placeholder="Entrez votre nom" autocomplete="off"></input>
+            <input type="text" id="password" placeholder="Entrez votre password" autocomplete="off"></input>
+            <input type="button" id="connexion">Connexion</input>
+        </form>
+    </header>
+    <div class="filters">
+        <a class="filter_link" style="background: #3faaf5;" href="./">MENU</a>
+        <a class="filter_link" style="background: #57af56;" href="./game1/index.html">GAME 1</a>
+        <a class="filter_link" style="background: #fda729;" href="./game2/index.html">GAME 2</a>
+        <a class="filter_link" style="background: #d12710;" href="./game3/index.html">GAME 3</a>
+        <a class="filter_link" style="background: #580e04;" href="./game3/index.html">INFOS</a>
     </div>
 
-  <ul class="cd-items cd-container">
-    <!---------------->
-    <li class="cd-item " style="display: list-item;"><img src="./assets/candycrush.png" alt="">
-      <div class="cd-trigger"><a href="game1/index.html" id="titre">PLAY</a></div>
-    </li>
-    <!--------------->
-    <li class="cd-item " style="display: list-item;"><img src="./assets/memory.jfif" alt="">
-      <div class="cd-trigger"><a href="game2/index.html" id="titre" >PLAY</a></div>
-    </li>
-    <!----------------->
-    <li class="cd-item" style="display: list-item;"><img src="./assets/justeprix.png" alt="">
-      <div class="cd-trigger"><a href="game3/index.html" id="titre" >PLAY</a></div>
-      <!----------------->
-    <li class="cd-item" style="display: list-item;"><img src="./assets/info.png" alt="">
-      <div class="cd-trigger"><a href="game3/index.html" id="titre" >INFOS</a></div>
-    </li>
-    </li>
-  </ul>
+    <ul class="cd-items cd-container">
+        <!---------------->
+        <li class="cd-item " style="display: list-item;"><img src="./assets/candycrush.png" alt="">
+            <div class="cd-trigger"><a href="game1/index.html" id="titre">PLAY</a></div>
+        </li>
+        <!--------------->
+        <li class="cd-item " style="display: list-item;"><img src="./assets/memory.jfif" alt="">
+            <div class="cd-trigger"><a href="game2/index.html" id="titre">PLAY</a></div>
+        </li>
+        <!----------------->
+        <li class="cd-item" style="display: list-item;"><img src="./assets/justeprix.png" alt="">
+            <div class="cd-trigger"><a href="game3/index.html" id="titre">PLAY</a></div>
+            <!----------------->
+            <li class="cd-item" style="display: list-item;"><img src="./assets/info.png" alt="">
+                <div class="cd-trigger"><a href="game3/index.html" id="titre">INFOS</a></div>
+            </li>
+        </li>
+    </ul>
 
 </body>
 

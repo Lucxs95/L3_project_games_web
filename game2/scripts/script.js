@@ -51,18 +51,21 @@ class Difficulty {
         document.cookie = "level=level1";
         this.displayGrid(this.grille);
         this.generate("level1");
+        document.getElementById("score").innerHTML = "<strong>10</strong>/10";
     }
 
     setupLevelTwo() {
         document.cookie = "level=level2";
         this.displayGrid(this.grille2);
         this.generate("level2");
+        document.getElementById("score").innerHTML = "<strong>20</strong>/20";
     }
 
     setupLevelThree() {
         document.cookie = "level=level3";
         this.displayGrid(this.grille3);
         this.generate("level3");
+        document.getElementById("score").innerHTML = "<strong>30</strong>/30";
     }
 
     displayGrid(gridToDisplay) {
