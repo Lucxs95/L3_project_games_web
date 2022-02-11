@@ -690,3 +690,41 @@ span.logo {
     width: 100%;
     text-align: center;
 }
+
+
+/*#################################### HEADER ############################################ */
+
+.principaleConnexionInscription {
+    text-align: center;
+}
+
+#retourPrincipale {}
+
+#inscriptionPrincipale {}
+
+#connexionPrincipale {}
+
+#deuxieme {
+    display: none;
+}
+
+#troisieme {
+    display: none;
+}
+
+.Inscription {
+    text-align: center;
+}
+
+.Connexion {
+    text-align: center;
+}
+
+.deconnexion {
+    text-align: center;
+    display: contents;
+}
+
+#deconnexion.deco {
+    color: red;
+}
