@@ -2,24 +2,31 @@ import Game from "./Game.js";
 window.onload = () => {
     const difficulty = new Difficulty();
 
-    const cookie = document.cookie.split('=');
-    if (cookie.length <= 1) {
-        difficulty.setupLevelOne();
-    } else {
-        switch (cookie[1]) {
-            case "level1":
-                difficulty.setupLevelOne();
-                break;
-            case "level2":
-                difficulty.setupLevelTwo();
-                break;
-            case "level3":
-                difficulty.setupLevelThree();
-                break;
+    const cookie = getCookie("level");
+    switch (cookie) {
+        case "level1":
+            difficulty.setupLevelOne();
+            break;
+        case "level2":
+            difficulty.setupLevelTwo();
+            break;
+        case "level3":
+            difficulty.setupLevelThree();
+            break;
+    }
+};
+
+export function getCookie(name) {
+    let cookie, c;
+    cookie = document.cookie.split(';');
+    for (var i = 0; i < cookie.length; i++) {
+        c = cookie[i].split('=');
+        if (c[0] == name) {
+            return c[1];
         }
     }
-
-};
+    return "";
+}
 
 let depart = false;
 let temps_debut = new Date().getTime();
@@ -168,9 +175,9 @@ class Difficulty {
     }
 
     addClickBehaviorToCase(nb_alea, i, chaine, test) {
-        let cookie = document.cookie.split('=');
+        let cookie = getCookie("level");
         let nb_img = Math.floor((nb_alea + 1) / 2); //8 paires pour 16 places ==> 2 générations différentes par image
-        switch (cookie[1]) {
+        switch (cookie) {
             case "level1":
                 document.querySelector(".grille #case" + i).innerHTML = "<img id='img" + i + "' src='mini/mini" + nb_img + ".png'  alt='' />";
                 break;

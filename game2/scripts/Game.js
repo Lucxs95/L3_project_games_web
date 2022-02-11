@@ -1,3 +1,4 @@
+import { getCookie } from "./script.js"
 export default class Game {
     constructor() {
         this.nb_clics = 0;
@@ -10,7 +11,7 @@ export default class Game {
         this.score = 0;
         this.depart = false;
         this.temps_debut = new Date().getTime();
-        this.cookie = document.cookie.split('=');
+        this.cookie = getCookie("level");
     }
     verifier(nameImg, baliseName, level) {
         let dif_temps = Math.floor((new Date().getTime() - this.temps_debut) / 1000);
@@ -32,7 +33,7 @@ export default class Game {
                         this.depart = true;
                         this.nb_clics = 0;
                         this.nb_erreurs++;
-                        switch (this.cookie[1]) {
+                        switch (this.cookie) {
                             case "level1":
                                 if (this.nb_erreurs < 11)
                                     this.score = 10 - this.nb_erreurs;

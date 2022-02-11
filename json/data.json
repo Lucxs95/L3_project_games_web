@@ -1,5 +1,4 @@
-{
-    "player_1": {
+[{
         "id": "0",
         "name": "John",
         "password": "test",
@@ -8,8 +7,7 @@
         "best_score_game3": "5",
         "trophies": "null"
     },
-
-    "player_2": {
+    {
         "id": "1",
         "name": "Doe",
         "password": "test2",
@@ -18,5 +16,4 @@
         "best_score_game3": "45",
         "trophies": "null"
     }
-
-}
+]
