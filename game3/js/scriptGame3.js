@@ -3,20 +3,17 @@ window.onload = init;
 
 function init() {
     console.log("Page et ressources prêtes à l'emploi");
+
     const game = new Game();
     game.play();
 
-    //let json = require('../../json/data.json');
-    //console.log(json);
-
-    //let jsonParsed = JSON.parse(json);
-    //console.log(jsonParsed);
+    console.log(data);
 }
 
 class Game {
     constructor() {
         //définition des variables
-        this.temps = 15;
+        this.temps = 50;
         this.min = 0;
         this.max = 50;
         this.justePrix = this.entierAleatoire(this.min, this.max);
@@ -29,20 +26,20 @@ class Game {
 
         document.getElementById("nombre").addEventListener("click", () => {
             const numberGivenByPlayer = document.getElementById("nombre").value;
-            //console.log(numberGivenByPlayer);
 
             document.getElementById("nombre").addEventListener("keyup", function(event) {
                 event.preventDefault();
                 if (event.keyCode === 13) {
                     document.getElementById("parisButton").click();
                 }
-            });
 
+            });
         });
 
         document
             .getElementById("commencer")
             .addEventListener("click", this.afficherJeu.bind(this));
+
     }
 
     play() {
@@ -57,6 +54,11 @@ class Game {
             this.stop();
             this.temps = 0;
         } else {}
+    }
+
+    changerNombreRechercheMax() {
+        const NombreRechercheMaxElement = document.getElementById("prixMax");
+        NombreRechercheMaxElement.innerText = this.max;
     }
 
     entierAleatoire(min, max) {
@@ -97,6 +99,7 @@ class Game {
         document.getElementById("deleteStart").style.display = "none";
         document.getElementById("deleteButtonStart").style.display = "none";
         setInterval(this.diminuerTemps.bind(this), 1000);
+        setInterval(this.changerNombreRechercheMax.bind(this), 10)
         return 0;
     }
 
