@@ -26,19 +26,13 @@ class Game {
 
         document.getElementById("nombre").addEventListener("click", () => {
             const numberGivenByPlayer = document.getElementById("nombre").value;
-
-            document.getElementById("nombre").addEventListener("keyup", function(event) {
-                event.preventDefault();
-                if (event.keyCode === 13) {
-                    document.getElementById("parisButton").click();
-                }
-
-            });
         });
 
         document
             .getElementById("commencer")
             .addEventListener("click", this.afficherJeu.bind(this));
+
+
 
     }
 
