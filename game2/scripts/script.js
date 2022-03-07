@@ -131,7 +131,7 @@ class Difficulty {
 
     GenerateLvl2() {
         setTimeout(function() {
-            for (let i = 0; i < 25; i++) {
+            for (let i = 0; i < 36; i++) {
                 document.querySelector('.grille2 #img' + i).src = "mini/miniz.png";
             }
             depart = true;
@@ -139,11 +139,11 @@ class Difficulty {
         let nb_alea;
         let test = true;
         let chaine = "";
-        for (let i = 0; i < 25; i++) {
+        for (let i = 0; i < 36; i++) {
             while (test == true) {
-                nb_alea = Math.floor(Math.random() * 25) + 1; //Pour génération dans les 16 cases
+                nb_alea = Math.floor(Math.random() * 36) + 1; //Pour génération dans les 36 cases
                 if (chaine.indexOf("-" + nb_alea + "-") > -1)
-                    nb_alea = Math.floor(Math.random() * 25) + 1;
+                    nb_alea = Math.floor(Math.random() * 36) + 1;
                 else {
                     ({ chaine, test } = this.addClickBehaviorToCase(nb_alea, i, chaine, test));
                 }
@@ -153,7 +153,7 @@ class Difficulty {
     }
     GenerateLvl3() {
         setTimeout(function() {
-            for (let i = 0; i < 36; i++) {
+            for (let i = 0; i < 64; i++) {
                 document.querySelector('.grille3 #img' + i).src = "mini/miniz.png";
             }
             depart = true;
@@ -161,11 +161,11 @@ class Difficulty {
         let nb_alea;
         let test = true;
         let chaine = "";
-        for (let i = 0; i < 36; i++) {
+        for (let i = 0; i < 64; i++) {
             while (test == true) {
-                nb_alea = Math.floor(Math.random() * 36) + 1; //Pour génération dans les 16 cases
+                nb_alea = Math.floor(Math.random() * 64) + 1; //Pour génération dans les 64 cases
                 if (chaine.indexOf("-" + nb_alea + "-") > -1)
-                    nb_alea = Math.floor(Math.random() * 36) + 1;
+                    nb_alea = Math.floor(Math.random() * 64) + 1;
                 else {
                     ({ chaine, test } = this.addClickBehaviorToCase(nb_alea, i, chaine, test));
                 }

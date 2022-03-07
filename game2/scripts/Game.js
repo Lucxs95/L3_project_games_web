@@ -56,23 +56,23 @@ export default class Game {
                     this.depart = true;
                     this.nb_clics = 0;
                     this.img_ok += 2;
-                    switch (level) {
+                    switch (this.cookie) {
                         case "level1":
                             if (this.img_ok == 16) {
                                 document.getElementById("score").innerHTML = "<strong>" + this.score + "</strong>/10";
-                                document.getElementById("temps").innerHTML = "Vous avez mis <strong>" + this.dif_temps + "</strong> secondes";
+                                document.getElementById("temps").innerHTML = "Vous avez mis <strong>" + dif_temps + "</strong> secondes";
                             }
                             break;
                         case "level2":
-                            if (this.img_ok == 25) {
+                            if (this.img_ok == 36) {
                                 document.getElementById("score").innerHTML = "<strong>" + this.score + "</strong>/20";
-                                document.getElementById("temps").innerHTML = "Vous avez mis <strong>" + this.dif_temps + "</strong> secondes";
+                                document.getElementById("temps").innerHTML = "Vous avez mis <strong>" + dif_temps + "</strong> secondes";
                             }
                             break;
                         case "level3":
-                            if (this.img_ok == 36) {
+                            if (this.img_ok == 64) {
                                 document.getElementById("score").innerHTML = "<strong>" + this.score + "</strong>/30";
-                                document.getElementById("temps").innerHTML = "Vous avez mis <strong>" + this.dif_temps + "</strong> secondes";
+                                document.getElementById("temps").innerHTML = "Vous avez mis <strong>" + dif_temps + "</strong> secondes";
                             }
                             break;
                     }
