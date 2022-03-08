@@ -27,7 +27,7 @@ export default class Game {
             if (this.case1 != this.case2) {
                 this.depart = false;
                 if (this.mini1 != this.mini2) {
-                    let attente = setTimeout(() => {
+                    attente = setTimeout(() => {
                         document.getElementById(this.case1).src = "mini/miniz.png";
                         document.getElementById(this.case2).src = "mini/miniz.png";
                         this.depart = true;
@@ -82,7 +82,7 @@ export default class Game {
                     this.nb_clics = 1;
                 }
             }
-            if (this.dif_temps > 180) {
+            if (dif_temps > 180) {
                 document.getElementById("temps").innerHTML = "Le temps imparti est dépassé, vous avez perdu !";
                 this.depart = false;
             }
