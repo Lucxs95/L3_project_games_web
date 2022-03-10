@@ -1,0 +1,25 @@
+{
+    "score": [{
+            "id": 0,
+            "name": "Lucas",
+            "game1_score": 60,
+            "game2_score": {
+                "level_1": 10,
+                "level_2": 20,
+                "level_3": 30
+            },
+            "game3_score": 10
+        },
+        {
+            "id": 1,
+            "name": "Loïc",
+            "game1_score": 100,
+            "game2_score": {
+                "level_1": 8,
+                "level_2": 16,
+                "level_3": 21
+            },
+            "game3_score": 8
+        }
+    ]
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+
+<head>
+    <meta charset="utf-8">
+    <title> GAMES WEEB </title>
+    <link rel="stylesheet" href=" style.css" />
+    <link rel="icon" type="image/png" href="./assets/js_img.png">
+    <script type="module" src="./javascript/script.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>GAMES WEEB</h1>
+
+
+        <div class="principaleConnexionInscription">
+            <form id="principale" role="form">
+                <input type="button" id="inscriptionPrincipale" value="Inscription"></input>
+                <input type="button" id="connexionPrincipale" value="Connexion"></input>
+                <input type="button" id="retourPrincipale" value="Retour"></input>
+
+            </form>
+        </div>
+
+        <div class="Connexion">
+            <form id="deuxieme" role="form">
+                <input type="text" id="name" placeholder="Entrez votre nom" autocomplete="off"></input>
+                <input type="text" id="password" placeholder="Entrez votre password" autocomplete="off"></input>
+                <input type="button" id="connexion" value="Connexion"></input>
+            </form>
+        </div>
+        <div class="Inscription">
+            <form id="troisieme" role="form">
+                <input type="text" id="name" placeholder="Entrez votre nom" autocomplete="off"></input>
+                <input type="text" id="password" placeholder="Entrez votre password" autocomplete="off"></input>
+                <input type="button" id="inscription" value="Inscription"></input>
+            </form>
+        </div>
+
+        <div class="deconnexion">
+            <form id="quatrieme" role="form">
+                </br>
+                <input type="button" id="deconnexion" class="deco" value="Déconnexion"></input>
+            </form>
+        </div>
+
+
+    </header>
+    <div class="filters">
+        <a class="filter_link" style="background: #3faaf5;" href="./">MENU</a>
+        <a class="filter_link" style="background: #57af56;" href="./games/game1/index.html">GAME 1</a>
+        <a class="filter_link" style="background: #fda729;" href="./games/game2/index.html">GAME 2</a>
+        <a class="filter_link" style="background: #d12710;" href="./games/game3/index.html">GAME 3</a>
+        <a class="filter_link" style="background: #580e04;" href="./games/infos/index.html">INFOS</a>
+    </div>
+
+    <ul class="cd-items cd-container">
+        <!---------------->
+        <li class="cd-item " style="display: list-item;"><img src="./assets/candycrush.png" alt="">
+            <div class="cd-trigger"><a href="./games/game1/index.html" id="titre">PLAY</a></div>
+        </li>
+        <!--------------->
+        <li class="cd-item " style="display: list-item;"><img src="./assets/memory.jfif" alt="">
+            <div class="cd-trigger"><a href="./games/game2/index.html" id="titre">PLAY</a></div>
+        </li>
+        <!----------------->
+        <li class="cd-item" style="display: list-item;"><img src="./assets/justeprix.png" alt="">
+            <div class="cd-trigger"><a href="./games/game3/index.html" id="titre">PLAY</a></div>
+            <!----------------->
+            <li class="cd-item" style="display: list-item;"><img src="./assets/info.png" alt="">
+                <div class="cd-trigger"><a href="./games/infos/index.html" id="titre">INFOS</a></div>
+            </li>
+        </li>
+    </ul>
+
+</body>
+
+</html>
