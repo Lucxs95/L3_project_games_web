@@ -66,39 +66,6 @@
     filter: drop-shadow(4px 4px 4px #222);
 }
 
-.box {
-    display: flex;
-    justify-content: space-evenly;
-    border-radius: 10px;
-}
-
-#grille2 {
-    width: 200px;
-    height: 140%;
-    text-align: center;
-    background-color: rgba(58, 58, 58, 0.8);
-    border: 1px;
-    border: 1px solid #999;
-    margin-top: 180px;
-    border-radius: 10px;
-}
-
-#grille2 p {
-    color: white;
-    font-size: 150%;
-    font-family: OCR A Std, monospace;
-}
-
-#grille2 div {
-    border: 2px solid rgba(255, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    transition: 0.5s all;
-    text-align: center;
-    color: white;
-}
-
 #buttonTestChute {
     display: flex;
     margin-left: 50%;
@@ -119,4 +86,13 @@ h2 {
 h3 {
     text-align: center;
     font-size: 250%;
+}
+
+h3 {
+    text-align: center;
+    font-size: 60px;
+}
+
+header #quatrieme {
+    margin-top: -40px;
 }

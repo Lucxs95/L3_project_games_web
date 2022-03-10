@@ -1,0 +1,39 @@
+h1 {
+    text-align: center;
+    color: white;
+    font-weight: normal;
+}
+
+h3 {
+    text-align: center;
+    color: white;
+    font-weight: normal;
+}
+
+header h1 {
+    color: black;
+    font-weight: bold;
+}
+
+#tableauscore {
+    justify-content: center;
+    height: 100%;
+    width: 10%;
+}
+
+.boxRegles {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: -8%;
+}
+
+#tableauscore p {
+    color: white;
+    font-size: 120%;
+    font-family: O2R A Std, monospace;
+}
+
+header #quatrieme {
+    margin-top: -40px;
+}

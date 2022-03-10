@@ -13,7 +13,7 @@ function init() {
 class Game {
     constructor() {
         //définition des variables
-        this.temps = 50;
+        this.temps = 150;
         this.min = 0;
         this.max = 50;
         this.justePrix = this.entierAleatoire(this.min, this.max);
@@ -32,7 +32,9 @@ class Game {
             .getElementById("commencer")
             .addEventListener("click", this.afficherJeu.bind(this));
 
-
+        document
+            .getElementById("valider")
+            .addEventListener("click", this.recupererNom.bind(this));
 
     }
 
@@ -69,7 +71,7 @@ class Game {
 
         if (inputNumberByPlayer == this.justePrix) {
             console.log("yep");
-            this.plusMoins = "GG chercher de nouveau un prix";
+            this.plusMoins = "Bravo cherchez de nouveau un prix";
             this.score++;
             this.max = this.max * 2;
             this.justePrix = this.entierAleatoire(this.min, this.max);
@@ -78,10 +80,10 @@ class Game {
         } else {
             if (inputNumberByPlayer >= this.justePrix) {
                 console.log("-");
-                this.plusMoins = "-";
+                this.plusMoins = "C'est MOINS !!";
             } else {
                 console.log("+");
-                this.plusMoins = "+";
+                this.plusMoins = "C'est PLUS !!";
             }
         }
         plusMoinsElement.innerText = this.plusMoins;
@@ -102,6 +104,8 @@ class Game {
         scoreElement.innerText = this.score;
         document.querySelector(".mid").style.display = "none";
         document.querySelector(".midmid").style.display = "inline-block";
+
+
     }
 
     restart() {}

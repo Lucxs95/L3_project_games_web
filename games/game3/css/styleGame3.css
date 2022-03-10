@@ -92,3 +92,12 @@ button {
     text-align: center;
     color: white;
 }
+
+#timer {
+    font-weight: bold;
+    font-size: 125%;
+}
+
+header #quatrieme {
+    margin-top: -40px;
+}

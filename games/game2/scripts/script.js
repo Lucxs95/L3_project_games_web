@@ -1,7 +1,6 @@
 import Game from "./Game.js";
 window.onload = () => {
     const difficulty = new Difficulty();
-
     const cookie = getCookie("level");
     switch (cookie) {
         case "level1":
@@ -37,42 +36,50 @@ class Difficulty {
         this.grille = document.querySelector(".grille");
         this.grille2 = document.querySelector(".grille2");
         this.grille3 = document.querySelector(".grille3");
+        this.zoneScore = document.getElementById("score");
 
         let dif1 = document.querySelector("#dif1");
         dif1.onclick = () => {
             this.setupLevelOne();
+            window.location.reload();
         }
 
         let dif2 = document.querySelector("#dif2");
         dif2.onclick = () => {
             this.setupLevelTwo();
+            window.location.reload();
         }
 
         let dif3 = document.querySelector("#dif3");
         dif3.onclick = () => {
             this.setupLevelThree();
+            window.location.reload();
         }
+
+        document
+            .getElementById("valider")
+            .addEventListener("click", this.recupererNom.bind(this));
     }
 
     setupLevelOne() {
         document.cookie = "level=level1";
         this.displayGrid(this.grille);
         this.generate("level1");
-        document.getElementById("score").innerHTML = "<strong>10</strong>/10";
+        this.zoneScore.innerHTML = "<strong>10</strong>/10";
     }
 
     setupLevelTwo() {
         document.cookie = "level=level2";
         this.displayGrid(this.grille2);
         this.generate("level2");
-        document.getElementById("score").innerHTML = "<strong>20</strong>/20";
+        this.zoneScore.innerHTML = "<strong>20</strong>/20";
     }
 
     setupLevelThree() {
         document.cookie = "level=level3";
         this.displayGrid(this.grille3);
         this.generate("level3");
-        document.getElementById("score").innerHTML = "<strong>30</strong>/30";
+        this.zoneScore.innerHTML = "<strong>30</strong>/30";
     }
 
     displayGrid(gridToDisplay) {
@@ -96,6 +103,10 @@ class Difficulty {
         }
 
     }
+    recupererNom() {
+        let inputNameByPlayer = document.getElementById("name").value;
+        console.log(inputNameByPlayer);
+    }
 
     GenerateLvl1() {
         setTimeout(function() {
@@ -115,14 +126,6 @@ class Difficulty {
                     nb_alea = Math.floor(Math.random() * 16) + 1;
                 else {
                     ({ chaine, test } = this.addClickBehaviorToCase(nb_alea, i, chaine, test));
-                    /*
-                    nb_img = Math.floor((nb_alea + 1) / 2); //8 paires pour 16 places ==> 2 générations différentes par image
-                    //onClick='verifier(\"img" + i + "\", \"mini" + nb_img + "\")'
-                    document.querySelector(".grille #case" + i).innerHTML = "<img id='img" + i + "' src='mini/mini" + nb_img + ".png'  alt='' />";
-                    const img = document.getElementById("img" + i);
-                    img.addEventListener('click', this.checkImage.bind(this, i, nb_img));
-                    chaine += "-" + nb_alea + "-";
-                    test = false;*/
                 }
             }
             test = true;
