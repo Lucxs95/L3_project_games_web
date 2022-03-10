@@ -1,0 +1,118 @@
+<html lang="fr">
+
+<head>
+    <title> GAMES WEEB </title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href=" ../../style.css" />
+    <link rel="stylesheet" href=" ./css/styleGame3.css" />
+    <script type="module" src="../../javascript/script.js"></script>
+    <script type="module" src="./js/scriptGame3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <h1>GAMES WEEB</h1>
+        <div class="deconnexion">
+            <form id="quatrieme" role="form">
+                <input type="button" id="deconnexion" class="deco" value="Déconnexion"></input>
+            </form>
+        </div>
+    </header>
+    <div class="filters">
+        <a class="filter_link" style="background: #3faaf5;" href="../../index.html">MENU</a>
+        <a class="filter_link " style="background: #57af56; " href="../game1/index.html ">GAME 1</a>
+        <a class="filter_link " style="background: #fda729; " href="../game2/index.html ">GAME 2</a>
+        <a class="filter_link " style="background: #d12710; " href="../game3/index.html ">GAME 3</a>
+        <a class="filter_link " style="background: #580e04; " href="../infos/index.html ">INFOS</a>
+    </div>
+
+    <div class="box">
+        <!--/*SCORE*/ -->
+        <div id="tableauscore">
+            <p>SCORE</p>
+            <div id="tab1">1er -</div>
+            <div id="tab2">2ème -</div>
+            <div id="tab3">3eme -</div>
+            <div id="tab4">4eme -</div>
+            <div id="tab5">5eme -</div>
+
+        </div>
+        <!--/*SCORE*/ -->
+
+
+        <!--/*JEU*/ -->
+        <div class="midmid">
+            <h2 class="over">GAME OVER</h2>
+            <h2 class="over1">Vous avez trouvé</h2>
+            <h2 id="score">0</h2>
+            <h2 class="over2">prix</h2>
+
+            <input type="text" id="name" placeholder="Entrez votre nom" autocomplete="off"></input>
+            <input type="button" id="valider" value="VALIDER"></input>
+            </br>
+            </br>
+            <input type="button" class="btn" value="Nouvelle partie" onClick="window.location.reload()" />
+        </div>
+        <div class="mid">
+
+            <h3>Le prix de la vitrine est entre 0 et
+                <div id="prixMax">50</div>
+            </h3>
+
+            <div id="timer">10</div>
+
+
+            <h2 class="secondes">Secondes</h2>
+            <h2 class="reponse">Trouvez le Juste Prix :</h2>
+            <div id="PlusMoins"></div>
+            <div id="deleteStart">
+                <img src="../../assets/justeprix.png" height="225px">
+            </div>
+            <div id="afficherJeu">
+                <img src="">
+            </div>
+
+            <div id="startGame">
+                <form id="paris" class="form-inline" role="form">
+                    <input type="number" id="nombre" placeholder="Entrez un nombre" autocomplete="off"></input>
+                    <input type="button" id="parisButton" value="Parier !"></input>
+                </form>
+            </div>
+            </br>
+            <div id="deleteButtonStart">
+                <input type="button" id="commencer" value="Commencer !"></button>
+            </div>
+
+        </div>
+
+
+
+        <!--/*JEU*/ -->
+
+        <!--/*REGLES*/ -->
+        <button type="submit" id="nav-icon1">REGLES DU JEU</button>
+        <div class="hero">
+            <div class="navbar container">
+                <div class="overlay" id="overlay">
+                    <div class="overlay-content">
+                        <p>Le jeu consiste à trouver un nombre aléatoire situé dans un intervalle entre 0 et 50
+                        </p>
+                        <p> au départ puis le maximum est doublé toutes les bonnes réponses du joueur.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/*REGLES*/ -->
+
+
+        <script src="../../javascript/function.js" type="text/javascript"></script>
+    </div>
+
+
+</body>
+
+</html>

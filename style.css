@@ -1,7 +1,7 @@
 html {
     background-image: url(./assets/Retro_Futurism_Background.jpg);
     background-repeat: no-repeat;
-    padding-top: 20px;
+    padding-top: 10px;
 }
 
 header {
@@ -33,7 +33,7 @@ a {
 h1 {
     text-align: center;
     margin-top: 20px;
-    font-size: 80px;
+    font-size: 60px;
     color: rgb(0, 0, 0);
 }
 
@@ -46,7 +46,6 @@ h1 {
 }
 
 .filters {
-    padding-top: 40px;
     text-align: center;
 }
 
@@ -698,11 +697,13 @@ span.logo {
     text-align: center;
 }
 
-#retourPrincipale {}
+#principale {
+    margin-top: -40px;
+}
 
-#inscriptionPrincipale {}
-
-#connexionPrincipale {}
+#quatrieme {
+    margin-top: -10px;
+}
 
 #deuxieme {
     display: none;
@@ -714,10 +715,12 @@ span.logo {
 
 .Inscription {
     text-align: center;
+    margin-top: 10px;
 }
 
 .Connexion {
     text-align: center;
+    margin-top: 10px;
 }
 
 .deconnexion {
@@ -727,4 +730,42 @@ span.logo {
 
 #deconnexion.deco {
     color: red;
+}
+
+
+/*score*/
+
+#tableauscore {
+    height: 140%;
+    text-align: center;
+    background-color: rgba(58, 58, 58, 0.8);
+    margin-top: 180px;
+    border-radius: 10px;
+}
+
+#tableauscore p {
+    color: white;
+    font-size: 150%;
+    font-family: OCR A Std, monospace;
+}
+
+#tableauscore div {
+    border: 2px solid rgba(255, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: 0.5s all;
+    text-align: center;
+    color: white;
+    margin: auto;
+    padding-bottom: 2px;
+}
+
+
+/*allignement*/
+
+.box {
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 10px;
 }
